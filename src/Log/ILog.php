@@ -1,11 +1,11 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Log;
+namespace iLUB\Plugins\TestCron\Log;
 
 /**
  * Interface ILog
  *
- * @package iLUB\Plugins\DelUser\Log
+ * @package iLUB\Plugins\TestCron\Log
  */
 interface ILog {
 

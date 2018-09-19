@@ -1,15 +1,15 @@
 <?php
 
-use iLUB\Plugins\DelUser\Helper\DIC;
+use iLUB\Plugins\TestCron\Helper\DIC;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
- * Class ilDelUserConfigGUI
+ * Class ilTestCronConfigGUI
  *
  * @package
  */
-class ilDelUserConfigGUI extends ilPluginConfigGUI {
+class ilTestCronConfigGUI extends ilPluginConfigGUI {
 
 	use DIC;
 
@@ -20,13 +20,13 @@ class ilDelUserConfigGUI extends ilPluginConfigGUI {
 	public function executeCommand() {
 		parent::executeCommand();
 		switch ($this->ctrl()->getNextClass()) {
-			case strtolower(delUserMainGUI::class):
-				$h = new delUserMainGUI();
+			case strtolower(TestCronMainGUI::class):
+				$h = new TestCronMainGUI();
 				$this->ctrl()->forwardCommand($h);
 
 				return;
 		}
-		$this->ctrl()->redirectByClass([ delUserMainGUI::class ]);
+		$this->ctrl()->redirectByClass([ TestCronMainGUI::class ]);
 	}
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Helper;
+namespace iLUB\Plugins\TestCron\Helper;
 
 use ilCtrl;
 use ilDBInterface;
@@ -22,7 +22,7 @@ use ilTree;
 /**
  * Trait DIC
  *
- * @package iLUB\Plugins\DelUser\Helper
+ * @package iLUB\Plugins\TestCron\Helper
  */
 trait DIC {
 
@@ -48,7 +48,7 @@ trait DIC {
 	 * @return string
 	 * /
 	public function txt($variable) {
-		return ilDelUserPlugin::getInstance()->txt($variable);
+		return ilTestCronPlugin::getInstance()->txt($variable);
 	}*/
 
 	/**

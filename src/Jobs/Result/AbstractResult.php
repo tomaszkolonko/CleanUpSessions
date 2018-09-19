@@ -1,13 +1,13 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Jobs\Result;
+namespace iLUB\Plugins\TestCron\Jobs\Result;
 
 use ilCronJobResult;
 
 /**
  * Class AbstractResult
  *
- * @package iLUB\Plugins\DelUser\Jobs\Result
+ * @package iLUB\Plugins\TestCron\Jobs\Result
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  */
 abstract class AbstractResult extends ilCronJobResult {

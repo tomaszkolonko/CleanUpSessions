@@ -1,19 +1,19 @@
 <?php
 
-use iLUB\Plugins\DelUser\Object\IMetadataAwareObject;
-use iLUB\Plugins\DelUser\Object\ITaxonomyAwareObject;
-use iLUB\Plugins\DelUser\Object\ObjectFactory;
-use iLUB\Plugins\DelUser\Origin\OriginFactory;
-use iLUB\Plugins\DelUser\UI\DataTableGUI;
+use iLUB\Plugins\TestCron\Object\IMetadataAwareObject;
+use iLUB\Plugins\TestCron\Object\ITaxonomyAwareObject;
+use iLUB\Plugins\TestCron\Object\ObjectFactory;
+use iLUB\Plugins\TestCron\Origin\OriginFactory;
+use iLUB\Plugins\TestCron\UI\DataTableGUI;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
- * Class DelUserDataGUI
+ * Class TestCronDataGUI
  *
  * @package
  */
-class delUserDataGUI extends delUserMainGUI {
+class TestCronDataGUI extends TestCronMainGUI {
 
 	/**
 	 *
@@ -60,7 +60,7 @@ class delUserDataGUI extends delUserMainGUI {
 	 *
 	 */
 	protected function initTabs() {
-		$this->tabs()->activateSubTab(DelUserConfigOriginsGUI::SUBTAB_DATA);
+		$this->tabs()->activateSubTab(TestCronConfigOriginsGUI::SUBTAB_DATA);
 	}
 
 

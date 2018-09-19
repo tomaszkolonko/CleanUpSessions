@@ -1,35 +1,35 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugings\DelUser\Helper\DIC;
+use iLUB\Plugings\TestCron\Helper\DIC;
 
 /**
- * Class DelUserMainGUI
+ * Class TestCronMainGUI
  *
  * @package
  *
- * @ilCtrl_IsCalledBy delUserMainGUI: delUserConfigGUI, ilObjComponentSettingsGUI
- * @ilCtrl_calls      delUserMainGUI: delUserConfigOriginsGUI
- * @ilCtrl_calls      delUserMainGUI: delUser2ConfigGUI
+ * @ilCtrl_IsCalledBy TestCronMainGUI: TestCronConfigGUI, ilObjComponentSettingsGUI
+ * @ilCtrl_calls      TestCronMainGUI: TestCronConfigOriginsGUI
+ * @ilCtrl_calls      TestCronMainGUI: TestCron2ConfigGUI
  */
-class delUserMainGUI {
+class TestCronMainGUI {
 
 	use DIC;
 	const TAB_PLUGIN_CONFIG = 'tab_plugin_config';
 	const TAB_ORIGINS = 'tab_origins';
 	const CMD_INDEX = 'index';
 	/**
-	 * @var ilDelUserPlugin
+	 * @var ilTestCronPlugin
 	 */
 	protected $pl;
 
 
 	/**
-	 * DelUserMainGUI constructor.
+	 * TestCronMainGUI constructor.
 	 */
 	public function __construct() {
 	    var_dump("100");
-		$this->pl = ilDelUserPlugin::getInstance();
+		$this->pl = ilTestCronPlugin::getInstance();
 	}
 
 
@@ -41,10 +41,10 @@ class delUserMainGUI {
 		$this->initTabs();
 		$nextClass = $this->ctrl()->getNextClass();
 		switch ($nextClass) {
-			case strtolower(delUserConfigGUI::class):
-				$this->ctrl()->forwardCommand(new delUserConfigGUI());
+			case strtolower(TestCronConfigGUI::class):
+				$this->ctrl()->forwardCommand(new TestCronConfigGUI());
 				break;
-			case strtolower(delUserDataGUI::class):
+			case strtolower(TestCronDataGUI::class):
 				break;
 			default:
 				$cmd = $this->ctrl()->getCmd(self::CMD_INDEX);
@@ -57,7 +57,7 @@ class delUserMainGUI {
 	 *
 	 */
 	protected function index() {
-		$this->ctrl()->redirectByClass(delUserConfigGUI::class);
+		$this->ctrl()->redirectByClass(TestCronConfigGUI::class);
 	}
 
 
@@ -66,7 +66,7 @@ class delUserMainGUI {
 	 */
 	protected function initTabs() {
 		$this->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG), $this->ctrl()
-			->getLinkTargetByClass(delUserConfigGUI::class));
+			->getLinkTargetByClass(TestCronConfigGUI::class));
 
 	}
 

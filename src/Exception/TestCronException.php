@@ -1,15 +1,15 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Exception;
+namespace iLUB\Plugins\TestCron\Exception;
 
 use ilException;
 
 /**
  * Class HubException
  *
- * @package iLUB\Plugins\DelUser\Exception
+ * @package iLUB\Plugins\TestCron\Exception
  */
-class DelUserException extends ilException {
+class TestCronException extends ilException {
 
 	/**
 	 * @param string $message

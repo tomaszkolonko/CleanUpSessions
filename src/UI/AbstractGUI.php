@@ -1,16 +1,16 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\UI;
+namespace iLUB\Plugins\TestCron\UI;
 
 use ilCtrl;
 use ilTabsGUI;
 use ilTemplate;
-use iLUB\Plugins\DelUser\Helper\DIC;
+use iLUB\Plugins\TestCron\Helper\DIC;
 
 /**
  * Class AbstractGUI
  *
- * @package iLUB\Plugins\DelUser\UI
+ * @package iLUB\Plugins\TestCron\UI
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  * @deprecated
  */

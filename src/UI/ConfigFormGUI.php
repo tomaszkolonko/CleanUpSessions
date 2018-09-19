@@ -1,21 +1,21 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\UI;
+namespace iLUB\Plugins\TestCron\UI;
 
-use DelUserConfigGUI;
+use TestCronConfigGUI;
 use ilCheckboxInputGUI;
 use ilFormSectionHeaderGUI;
-use ilDelUserConfigGUI;
-use ilDelUserPlugin;
+use ilTestCronConfigGUI;
+use ilTestCronPlugin;
 use ilPropertyFormGUI;
 use ilTextInputGUI;
-use iLUB\Plugins\DelUser\Config\IDelUser;
-use iLUB\Plugins\DelUser\Helper\DIC;
+use iLUB\Plugins\TestCron\Config\ITestCron;
+use iLUB\Plugins\TestCron\Helper\DIC;
 
 /**
  * Class ConfigFOrmGUI
  *
- * @package iLUB\Plugins\DelUser\UI
+ * @package iLUB\Plugins\TestCron\UI
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  */
@@ -23,32 +23,32 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 
 	use DIC;
 	/**
-	 * @var ilDelUserConfigGUI
+	 * @var ilTestCronConfigGUI
 	 */
 	protected $parent_gui;
 	/**
-	 * @var IDelUser
+	 * @var ITestCron
 	 */
 	protected $config;
 	/**
-	 * @var ilDelUserPlugin
+	 * @var ilTestCronPlugin
 	 */
 	protected $pl;
 
 
 	/**
-	 * @param DelUserConfigGUI $parent_gui
-	 * @param IDelUser    $config
+	 * @param TestCronConfigGUI $parent_gui
+	 * @param ITestCron    $config
 	 */
-	public function __construct($parent_gui, IDelUser $config) {
+	public function __construct($parent_gui, ITestCron $config) {
         var_dump("1234"); exit;
 		$this->parent_gui = $parent_gui;
 		$this->config = $config;
-		$this->pl = ilDelUserPlugin::getInstance();
+		$this->pl = ilTestCronPlugin::getInstance();
 		$this->setFormAction($this->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();
-		$this->addCommandButton(DelUserConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
-		$this->addCommandButton(DelUserConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
+		$this->addCommandButton(TestCronConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
+		$this->addCommandButton(TestCronConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
 		var_dump("1234"); exit;
 		parent::__construct();
 	}
@@ -60,13 +60,13 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	protected function initForm() {
 		$this->setTitle($this->pl->txt('admin_form_title'));
 
-		$item = new ilTextInputGUI($this->pl->txt('first_variable'), IDelUser::FIRST_VARIABLE_NAME);
+		$item = new ilTextInputGUI($this->pl->txt('first_variable'), ITestCron::FIRST_VARIABLE_NAME);
 		$item->setInfo($this->pl->txt('first_variable'));
-		$item->setValue($this->config->get(IDelUser::FIRST_VARIABLE_NAME));
+		$item->setValue($this->config->get(ITestCron::FIRST_VARIABLE_NAME));
 		$this->addItem($item);
 
-		$cb = new ilCheckboxInputGUI($this->pl->txt('second_variable'), IDelUser::SECOND_VARIABLE_NAME);
-		$cb->setChecked($this->config->get(IDelUser::SECOND_VARIABLE_NAME));
+		$cb = new ilCheckboxInputGUI($this->pl->txt('second_variable'), ITestCron::SECOND_VARIABLE_NAME);
+		$cb->setChecked($this->config->get(ITestCron::SECOND_VARIABLE_NAME));
 		$this->addItem($cb);
 
 //		$item = new ilFormSectionHeaderGUI();
@@ -79,10 +79,10 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 //		$this->addItem($h);
 //
 //
-//		$item = new \ilTextAreaInputGUI($this->pl->txt('admin_msg_' . IDelUser::SHORTLINK_SUCCESS), IDelUser::SHORTLINK_SUCCESS);
+//		$item = new \ilTextAreaInputGUI($this->pl->txt('admin_msg_' . ITestCron::SHORTLINK_SUCCESS), ITestCron::SHORTLINK_SUCCESS);
 //		$item->setUseRte(false);
-//		$item->setValue($this->config->get(IDelUser::SHORTLINK_SUCCESS));
-//		$item->setInfo($this->pl->txt('admin_msg_' . IDelUser::SHORTLINK_SUCCESS . '_info'));
+//		$item->setValue($this->config->get(ITestCron::SHORTLINK_SUCCESS));
+//		$item->setInfo($this->pl->txt('admin_msg_' . ITestCron::SHORTLINK_SUCCESS . '_info'));
 //		$this->addItem($item);
 
 	}

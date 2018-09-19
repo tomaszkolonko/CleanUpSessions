@@ -1,13 +1,13 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Config;
+namespace iLUB\Plugins\TestCron\Config;
 
 /**
  * Interface IHubConfig
  *
- * @package iLUB\Plugins\DelUser\Config
+ * @package iLUB\Plugins\TestCron\Config
  */
-interface IDelUser {
+interface ITestCron {
 
 	const FIRST_VARIABLE_NAME = 'first_variable_name';
 	const SECOND_VARIABLE_NAME = 'second_variable_name';

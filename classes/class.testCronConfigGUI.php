@@ -1,16 +1,16 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\DelUser\Config\ArConfig;
-use iLUB\Plugins\DelUser\Config\DelUserConfig;
-use iLUB\Plugins\DelUser\UI\ConfigFormGUI;
+use iLUB\Plugins\TestCron\Config\ArConfig;
+use iLUB\Plugins\TestCron\Config\TestCronConfig;
+use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
 
 /**
- * Class delUserConfigGUI
+ * Class TestCronConfigGUI
  *
  * @package
  */
-class delUserConfigGUI extends ilPluginConfigGUI {
+class TestCronConfigGUI extends ilPluginConfigGUI {
 
 	const CMD_SAVE_CONFIG = 'saveConfig';
 	const CMD_CANCEL = 'cancel';
@@ -20,7 +20,7 @@ class delUserConfigGUI extends ilPluginConfigGUI {
 	 *
 	 */
 	protected function index() {
-		$form = new ConfigFormGUI($this, new DelUserConfig());
+		$form = new ConfigFormGUI($this, new TestCronConfig());
 		$this->tpl()->setContent($form->getHTML());
 	}
 
@@ -29,7 +29,7 @@ class delUserConfigGUI extends ilPluginConfigGUI {
 	 *
 	 */
 	protected function saveConfig() {
-		$form = new ConfigFormGUI($this, new DelUserConfig());
+		$form = new ConfigFormGUI($this, new TestCronConfig());
 		if ($form->checkInput()) {
 			foreach ($form->getInputItemsRecursive() as $item) {
 				/** @var ilFormPropertyGUI $item */

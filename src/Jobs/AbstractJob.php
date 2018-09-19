@@ -1,14 +1,14 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Jobs;
+namespace iLUB\Plugins\TestCron\Jobs;
 
 use ilCronJob;
-use iLUB\Plugins\DelUser\Helper\DIC;
+use iLUB\Plugins\TestCron\Helper\DIC;
 
 /**
  * Class AbstractJob
  *
- * @package iLUB\Plugins\DelUser\Jobs
+ * @package iLUB\Plugins\TestCron\Jobs
  */
 abstract class AbstractJob extends ilCronJob {
 

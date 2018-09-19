@@ -2,14 +2,14 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use iLUB\Plugins\DelUser\Helper\DIC;
+use iLUB\Plugins\TestCron\Helper\DIC;
 
 /**
- * Class DelUserRemoveDataConfirm
+ * Class TestCronRemoveDataConfirm
  *
- * @ilCtrl_isCalledBy DelUserRemoveDataConfirm: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy TestCronRemoveDataConfirm: ilUIPluginRouterGUI
  */
-class DelUserRemoveDataConfirm {
+class TestCronRemoveDataConfirm {
 
 	use DIC;
 
@@ -22,7 +22,7 @@ class DelUserRemoveDataConfirm {
 
 
 	/**
-	 * @var ilDelUserPlugin
+	 * @var ilTestCronPlugin
 	 */
 	protected $pl;
 
@@ -31,7 +31,7 @@ class DelUserRemoveDataConfirm {
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilDelUserPlugin::getInstance();
+		$this->pl = ilTestCronPlugin::getInstance();
 	}
 
 
@@ -71,7 +71,7 @@ class DelUserRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function confirmRemoveDelUserData() {
+	protected function confirmRemoveTestCronData() {
         // TODO: ?
 	}
 
@@ -79,7 +79,7 @@ class DelUserRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function deactivateDelUser() {
+	protected function deactivateTestCron() {
         // TODO: ?
 	}
 
@@ -87,7 +87,7 @@ class DelUserRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function setKeepDelUserData() {
+	protected function setKeepTestCronData() {
         // TODO: ?
 	}
 
@@ -95,7 +95,7 @@ class DelUserRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function setRemoveDelUserData() {
+	protected function setRemoveTestCronData() {
         // TODO: ?
 	}
 }

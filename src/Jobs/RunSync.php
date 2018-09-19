@@ -1,20 +1,20 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Jobs;
+namespace iLUB\Plugins\TestCron\Jobs;
 
 use Exception;
 use ilCronJob;
-use iLUB\Plugins\DelUser\Jobs\Result\AbstractResult;
-use iLUB\Plugins\DelUser\Jobs\Result\ResultFactory;
-use iLUB\Plugins\DelUser\Log\OriginLog;
-use iLUB\Plugins\DelUser\Origin\OriginFactory;
-use iLUB\Plugins\DelUser\Sync\OriginSyncFactory;
-use iLUB\Plugins\DelUser\Sync\Summary\OriginSyncSummaryFactory;
+use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
+use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
+use iLUB\Plugins\TestCron\Log\OriginLog;
+use iLUB\Plugins\TestCron\Origin\OriginFactory;
+use iLUB\Plugins\TestCron\Sync\OriginSyncFactory;
+use iLUB\Plugins\TestCron\Sync\Summary\OriginSyncSummaryFactory;
 
 /**
  * Class RunSync
  *
- * @package iLUB\Plugins\DelUser\Jobs
+ * @package iLUB\Plugins\TestCron\Jobs
  */
 class RunSync extends AbstractJob {
 

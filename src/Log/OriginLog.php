@@ -1,8 +1,8 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Log;
+namespace iLUB\Plugins\TestCron\Log;
 
-use iLUB\Plugins\DelUser\Origin\IOrigin;
+use iLUB\Plugins\TestCron\Origin\IOrigin;
 
 /**
  * Class OriginLog
@@ -55,13 +55,13 @@ class OriginLog implements ILog {
 			return self::$ilLogInstances[$origin->getId()];
 		}
 		$filename = implode('-', [
-			\ilDelUserPlugin::PLUGIN_ID,
+			\ilTestCronPlugin::PLUGIN_ID,
 			'origin',
 			$origin->getObjectType(),
 			$origin->getId(),
 		]);
 
-		$logger = new Logger('delUser/' . $filename . '.log');
+		$logger = new Logger('TestCron/' . $filename . '.log');
 		self::$ilLogInstances[$origin->getId()] = $logger;
 
 		return $logger;

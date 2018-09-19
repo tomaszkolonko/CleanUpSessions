@@ -1,9 +1,9 @@
 <#1>
 <?php
-require_once "Customizing/global/plugins/Services/Cron/CronHook/DelUser/vendor/autoload.php";
+require_once "Customizing/global/plugins/Services/Cron/CronHook/TestCron/vendor/autoload.php";
 
-iLUB\Plugins\DelUser\Config\ArConfig::updateDB();
+iLUB\Plugins\TestCron\Config\ArConfig::updateDB();
 
-$config = new \iLUB\Plugins\DelUser\Config\ArConfig();
+$config = new \iLUB\Plugins\TestCron\Config\ArConfig();
 $config->save();
 ?>

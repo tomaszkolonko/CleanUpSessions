@@ -1,6 +1,6 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Log;
+namespace iLUB\Plugins\TestCron\Log;
 
 use ILIAS\Filesystem\Stream\Stream;
 use ILIAS\Filesystem\Stream\Streams;

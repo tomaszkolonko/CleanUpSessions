@@ -1,17 +1,17 @@
 <?php
 
-namespace iLUB\Plugins\DelUser\Config;
+namespace iLUB\Plugins\TestCron\Config;
 
 use ActiveRecord;
 
 /**
  * Class ArConfig
  *
- * @package iLUB\Plugins\DelUser\Config
+ * @package iLUB\Plugins\TestCron\Config
  */
 class ArConfig extends ActiveRecord {
 
-	const TABLE_NAME = 'ilub_deluser_config';
+	const TABLE_NAME = 'ilub_TestCron_config';
 
 
 	/**
