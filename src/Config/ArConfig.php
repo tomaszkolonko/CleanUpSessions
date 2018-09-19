@@ -11,7 +11,7 @@ use ActiveRecord;
  */
 class ArConfig extends ActiveRecord {
 
-	const TABLE_NAME = 'ilub_TestCron_config';
+	const TABLE_NAME = 'tcron_config';
 
 
 	/**

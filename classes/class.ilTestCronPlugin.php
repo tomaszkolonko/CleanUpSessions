@@ -25,7 +25,7 @@ use iLUB\Plugins\TestCron\Origin\User\ARUserOrigin;
 class ilTestCronPlugin extends ilCronHookPlugin {
 
 	use DIC;
-	const PLUGIN_ID = 'del';
+	const PLUGIN_ID = 'tcron';
 	const PLUGIN_NAME = 'TestCron';
 	/**
 	 * @var ilTestCronPlugin
