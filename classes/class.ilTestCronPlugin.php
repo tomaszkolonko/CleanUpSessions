@@ -5,17 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use iLUB\Plugins\TestCron\Config\ArConfig;
 use iLUB\Plugins\TestCron\Helper\DIC;
 use iLUB\Plugins\TestCron\Jobs\RunSync;
-use iLUB\Plugins\TestCron\Object\Category\ARCategory;
-use iLUB\Plugins\TestCron\Object\Course\ARCourse;
-use iLUB\Plugins\TestCron\Object\CourseMembership\ARCourseMembership;
-use iLUB\Plugins\TestCron\Object\Group\ARGroup;
-use iLUB\Plugins\TestCron\Object\GroupMembership\ARGroupMembership;
-use iLUB\Plugins\TestCron\Object\OrgUnit\AROrgUnit;
-use iLUB\Plugins\TestCron\Object\OrgUnitMembership\AROrgUnitMembership;
-use iLUB\Plugins\TestCron\Object\Session\ARSession;
-use iLUB\Plugins\TestCron\Object\SessionMembership\ARSessionMembership;
-use iLUB\Plugins\TestCron\Object\User\ARUser;
-use iLUB\Plugins\TestCron\Origin\User\ARUserOrigin;
+
 
 /**
  * Class ilTestCronPlugin

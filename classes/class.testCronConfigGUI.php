@@ -10,7 +10,7 @@ use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
  *
  * @package
  */
-class TestCronConfigGUI extends ilPluginConfigGUI {
+class testCronConfigGUI extends testCronMainGUI {
 
 	const CMD_SAVE_CONFIG = 'saveConfig';
 	const CMD_CANCEL = 'cancel';
@@ -21,11 +21,12 @@ class TestCronConfigGUI extends ilPluginConfigGUI {
 	 */
 	protected function index() {
 		$form = new ConfigFormGUI($this, new TestCronConfig());
+
 		$this->tpl()->setContent($form->getHTML());
 	}
 
 
-	/**
+    /**
 	 *
 	 */
 	protected function saveConfig() {
@@ -44,18 +45,10 @@ class TestCronConfigGUI extends ilPluginConfigGUI {
 		$this->tpl()->setContent($form->getHTML());
 	}
 
-
-	/**
+    /**
 	 *
 	 */
 	protected function initTabs() {
 		$this->tabs()->activateTab(self::TAB_PLUGIN_CONFIG);
 	}
-
-    /**
-     * @param string $cmd
-     */
-    public function performCommand($cmd) {
-        // noting to to here
-    }
 }

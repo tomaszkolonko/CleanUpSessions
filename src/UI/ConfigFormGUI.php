@@ -41,7 +41,6 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 * @param ITestCron    $config
 	 */
 	public function __construct($parent_gui, ITestCron $config) {
-        var_dump("1234"); exit;
 		$this->parent_gui = $parent_gui;
 		$this->config = $config;
 		$this->pl = ilTestCronPlugin::getInstance();
@@ -49,7 +48,6 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 		$this->initForm();
 		$this->addCommandButton(TestCronConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
 		$this->addCommandButton(TestCronConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
-		var_dump("1234"); exit;
 		parent::__construct();
 	}
 

@@ -1,19 +1,16 @@
 <?php
 
-use iLUB\Plugins\TestCron\Object\IMetadataAwareObject;
-use iLUB\Plugins\TestCron\Object\ITaxonomyAwareObject;
-use iLUB\Plugins\TestCron\Object\ObjectFactory;
-use iLUB\Plugins\TestCron\Origin\OriginFactory;
+
 use iLUB\Plugins\TestCron\UI\DataTableGUI;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
- * Class TestCronDataGUI
+ * Class testCronDataGUI
  *
  * @package
  */
-class TestCronDataGUI extends TestCronMainGUI {
+class testCronDataGUI extends testCronMainGUI {
 
 	/**
 	 *

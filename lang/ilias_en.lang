@@ -5,3 +5,5 @@ first_variable#:#First
 second_variable#:#Second
 button_save#:#Save
 button_cancel#:#Cancel
+cron_crnhk_tcron_msg_successfully_saved#:#Successfully saved
+cron_crnhk_tcron_tab_plugin_config#:#Basic Settings
