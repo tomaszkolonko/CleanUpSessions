@@ -4,7 +4,6 @@ namespace iLUB\Plugins\TestCron\UI;
 
 use TestCronConfigGUI;
 use ilCheckboxInputGUI;
-use ilFormSectionHeaderGUI;
 use ilTestCronConfigGUI;
 use ilTestCronPlugin;
 use ilPropertyFormGUI;
@@ -16,8 +15,6 @@ use iLUB\Plugins\TestCron\Helper\DIC;
  * Class ConfigFOrmGUI
  *
  * @package iLUB\Plugins\TestCron\UI
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
- * @author  Fabian Schmid <fs@studer-raimann.ch>
  */
 class ConfigFormGUI extends ilPropertyFormGUI {
 
@@ -66,22 +63,6 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 		$cb = new ilCheckboxInputGUI($this->pl->txt('second_variable'), ITestCron::SECOND_VARIABLE_NAME);
 		$cb->setChecked($this->config->get(ITestCron::SECOND_VARIABLE_NAME));
 		$this->addItem($cb);
-
-//		$item = new ilFormSectionHeaderGUI();
-//		$item->setTitle($this->pl->txt('common_permissions'));
-//		$this->addItem($item);
-//
-//
-//		$h = new ilFormSectionHeaderGUI();
-//		$h->setTitle($this->pl->txt('admin_shortlink'));
-//		$this->addItem($h);
-//
-//
-//		$item = new \ilTextAreaInputGUI($this->pl->txt('admin_msg_' . ITestCron::SHORTLINK_SUCCESS), ITestCron::SHORTLINK_SUCCESS);
-//		$item->setUseRte(false);
-//		$item->setValue($this->config->get(ITestCron::SHORTLINK_SUCCESS));
-//		$item->setInfo($this->pl->txt('admin_msg_' . ITestCron::SHORTLINK_SUCCESS . '_info'));
-//		$this->addItem($item);
 
 	}
 }

@@ -11,7 +11,6 @@ use ILIAS\DI\UIServices;
 use ILIAS\Filesystem\Filesystems;
 use ilLanguage;
 use ilLog;
-use ilMailMimeSenderFactory;
 use ilObjUser;
 use ilSetting;
 use ilTabsGUI;
@@ -40,16 +39,6 @@ trait DIC {
 	protected function ctrl() {
 		return $this->dic()->ctrl();
 	}
-
-
-	/*/* *
-	 * @param string $variable
-	 *
-	 * @return string
-	 * /
-	public function txt($variable) {
-		return ilTestCronPlugin::getInstance()->txt($variable);
-	}*/
 
 	/**
 	 * @return ilTemplate
@@ -128,22 +117,6 @@ trait DIC {
 	 */
 	protected function tree() {
 		return $this->dic()->repositoryTree();
-	}
-
-
-	/**
-	 * @return Filesystems
-	 */
-	protected function filesystem() {
-		return $this->dic()->filesystem();
-	}
-
-
-	/**
-	 * @return ilMailMimeSenderFactory
-	 */
-	protected function mailMimeSenderFactory() {
-		return $this->dic()["mail.mime.sender.factory"];
 	}
 
 
