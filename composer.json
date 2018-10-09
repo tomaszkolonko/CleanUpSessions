@@ -10,11 +10,8 @@
     },
     "classmap": [
       "classes",
-      "../../../../../../../Services/Container",
       "../../../../../../../Services/ActiveRecord",
-      "../../../../../../../Services/Cron",
-      "../../../../../../../Services/Calendar",
-      "../../../../../../../Services/Exceptions"
+      "../../../../../../../Services/Cron"
     ]
   }
 }

@@ -6,8 +6,6 @@ use ILIAS\Filesystem\Stream\Streams;
 
 /**
  * Class Logger
- *
- * @internal
  */
 class Logger {
 
