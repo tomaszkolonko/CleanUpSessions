@@ -11,7 +11,6 @@ use iLUB\Plugins\TestCron\Helper\DIC;
  * Class AbstractGUI
  *
  * @package iLUB\Plugins\TestCron\UI
- * @author  Fabian Schmid <fs@studer-raimann.ch>
  * @deprecated
  */
 abstract class AbstractGUI {
