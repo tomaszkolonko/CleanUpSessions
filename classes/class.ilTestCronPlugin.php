@@ -57,6 +57,7 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 	 * @return ilCronJob
 	 */
 	public function getCronJobInstance($a_job_id): ilCronJob {
+	    $a_job_id = "\iLUB\Plugins\TestCron\Jobs\RunSync";
 		return new $a_job_id();
 	}
 

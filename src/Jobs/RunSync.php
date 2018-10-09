@@ -4,12 +4,11 @@ namespace iLUB\Plugins\TestCron\Jobs;
 
 use Exception;
 use ilCronJob;
+use iLUB\Plugins\TestCron\Helper\TestCronAccess;
 use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
 use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
-use iLUB\Plugins\TestCron\Log\OriginLog;
-use iLUB\Plugins\TestCron\Origin\OriginFactory;
-use iLUB\Plugins\TestCron\Sync\OriginSyncFactory;
-use iLUB\Plugins\TestCron\Sync\Summary\OriginSyncSummaryFactory;
+use iLUB\Plugins\TestCron\Log\Logger;
+use iLUB\Plugins\TestCron\Sync\SyncSummaryCron;
 
 /**
  * Class RunSync
@@ -62,27 +61,13 @@ class RunSync extends AbstractJob {
 	 * @return AbstractResult
 	 */
 	public function run() {
+        $this->logger = new Logger("TestCronLogger.log");
+        $this->logger->write("Rsync::run() \n");
 		try {
-			$OriginSyncSummaryFactory = new OriginSyncSummaryFactory();
 
-			$OriginFactory = new OriginFactory($this->db());
+            $anonymous = new TestCronAccess();
+            $anonymous->allAnonymousUsers();
 
-			$summary = $OriginSyncSummaryFactory->cron();
-			foreach ($OriginFactory->getAllActive() as $origin) {
-				$originSyncFactory = new OriginSyncFactory($origin);
-				$originSync = $originSyncFactory->instance();
-				try {
-					$originSync->execute();
-				} catch (Exception $e) {
-
-				}
-				$OriginLog = new OriginLog($originSync->getOrigin());
-				$OriginLog->write($summary->getSummaryOfOrigin($originSync));
-
-				$summary->addOriginSync($originSync);
-			}
-
-            $summary->sendNotifications();
 
 			return ResultFactory::ok("everything's fine.");
 		} catch (Exception $e) {

@@ -43,8 +43,8 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 		$this->pl = ilTestCronPlugin::getInstance();
 		$this->setFormAction($this->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();
-		$this->addCommandButton(TestCronConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
-		$this->addCommandButton(TestCronConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
+		$this->addCommandButton(testCronConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
+		$this->addCommandButton(testCronConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
 		parent::__construct();
 	}
 

@@ -2,7 +2,6 @@
 
 namespace iLUB\Plugins\TestCron\Log;
 
-use ILIAS\Filesystem\Stream\Stream;
 use ILIAS\Filesystem\Stream\Streams;
 
 /**
@@ -47,6 +46,7 @@ class Logger {
 	 */
 	public function write($string) {
 		$this->stream->seek($this->stream->getSize());
-		$this->stream->write($string);
+        $message = "[" . date("Y/m/d h:i:s", time()) . "] " . $string;
+		$this->stream->write($message);
 	}
 }

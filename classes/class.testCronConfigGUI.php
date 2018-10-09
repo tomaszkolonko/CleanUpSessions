@@ -6,7 +6,7 @@ use iLUB\Plugins\TestCron\Config\TestCronConfig;
 use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
 
 /**
- * Class TestCronConfigGUI
+ * Class testCronConfigGUI
  *
  * @package
  */

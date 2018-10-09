@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\TestCron\Log\Logger;
 
 /**
  * Class testCronMainGUI
@@ -29,6 +30,8 @@ class testCronMainGUI {
 	 */
 	public function __construct() {
 		$this->pl = ilTestCronPlugin::getInstance();
+        $this->logger = new Logger("TestCronLogger.log");
+
 	}
 
 
@@ -36,13 +39,14 @@ class testCronMainGUI {
 	 *
 	 */
 	public function executeCommand() {
+	    $this->logger->write("testCronMainGUI::executeCommand() \n");
 		$this->initTabs();
 		$nextClass = $this->ctrl()->getNextClass();
 		switch ($nextClass) {
-			case strtolower(TestCronConfigGUI::class):
-				$this->ctrl()->forwardCommand(new TestCronConfigGUI());
+			case strtolower(testCronConfigGUI::class):
+				$this->ctrl()->forwardCommand(new testCronConfigGUI());
 				break;
-			case strtolower(TestCronDataGUI::class):
+			case strtolower(testCronDataGUI::class):
 				break;
 			default:
 				$cmd = $this->ctrl()->getCmd(self::CMD_INDEX);
@@ -65,7 +69,7 @@ class testCronMainGUI {
 	 */
 	protected function initTabs() {
 		$this->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG), $this->ctrl()
-			->getLinkTargetByClass(TestCronConfigGUI::class));
+			->getLinkTargetByClass(testCronConfigGUI::class));
 
 	}
 
