@@ -7,3 +7,5 @@ button_save#:#Speichern
 button_cancel#:#Abbrechen
 cron_crnhk_tcron_msg_successfully_saved#:#Erfolgreich gespeichert
 cron_crnhk_tcron_tab_plugin_config#:#Grundeinstellung
+expiration_threshold#:#Expiration Threshold (in minutes) after which an anonymous user will be deleted
+expiration_info#:#Default is set to 240 minutes.

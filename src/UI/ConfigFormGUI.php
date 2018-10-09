@@ -55,14 +55,10 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	protected function initForm() {
 		$this->setTitle($this->pl->txt('admin_form_title'));
 
-		$item = new ilTextInputGUI($this->pl->txt('first_variable'), ITestCron::FIRST_VARIABLE_NAME);
-		$item->setInfo($this->pl->txt('first_variable'));
-		$item->setValue($this->config->get(ITestCron::FIRST_VARIABLE_NAME));
+		$item = new ilTextInputGUI($this->pl->txt('expiration_threshold'), ITestCron::EXPIRATION_THRESHOLD);
+		$item->setInfo($this->pl->txt('expiration_info'));
+		$item->setValue($this->config->get(ITestCron::EXPIRATION_THRESHOLD));
 		$this->addItem($item);
-
-		$cb = new ilCheckboxInputGUI($this->pl->txt('second_variable'), ITestCron::SECOND_VARIABLE_NAME);
-		$cb->setChecked($this->config->get(ITestCron::SECOND_VARIABLE_NAME));
-		$this->addItem($cb);
 
 	}
 }

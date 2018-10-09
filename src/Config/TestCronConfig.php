@@ -13,16 +13,8 @@ class TestCronConfig implements ITestCron {
 	/**
 	 * @inheritdoc
 	 */
-	public function getFirstVariableName() {
-		return ArConfig::getValueByKey(ITestCron::FIRST_VARIABLE_NAME);
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getSecondVariableName() {
-		return ArConfig::getValueByKey(ITestCron::SECOND_VARIABLE_NAME);
+	public function getExpirationThreshold() {
+		return ArConfig::getValueByKey(ITestCron::EXPIRATION);
 	}
 
 

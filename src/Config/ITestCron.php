@@ -9,8 +9,7 @@ namespace iLUB\Plugins\TestCron\Config;
  */
 interface ITestCron {
 
-	const FIRST_VARIABLE_NAME = 'first_variable_name';
-	const SECOND_VARIABLE_NAME = 'second_variable_name';
+	const EXPIRATION_THRESHOLD = 'expiration_treshold';
 
 
 	/**
@@ -18,16 +17,7 @@ interface ITestCron {
 	 *
 	 * @return string
 	 */
-	public function getFirstVariableName();
-
-
-	/**
-	 * Get the name of the second variable
-	 *
-	 * @return string
-	 */
-	public function getSecondVariableName();
-
+	public function getExpirationThreshold();
 
 	/**
 	 * Get a config value by key.
