@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\Helper\DIC;
@@ -15,6 +16,7 @@ use iLUB\Plugins\TestCron\Log\Logger;
 class testCronMainGUI {
 
 	use DIC;
+
 	const TAB_PLUGIN_CONFIG = 'tab_plugin_config';
 	const TAB_ORIGINS = 'tab_origins';
 	const CMD_INDEX = 'index';
@@ -23,6 +25,11 @@ class testCronMainGUI {
 	 * @var ilTestCronPlugin
 	 */
 	protected $pl;
+
+    /**
+     * @var $this->logger
+     */
+    protected $logger;
 
 
 	/**

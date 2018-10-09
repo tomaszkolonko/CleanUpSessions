@@ -3,7 +3,7 @@
 namespace iLUB\Plugins\TestCron\Config;
 
 /**
- * Interface IHubConfig
+ * Interface ITestCron
  *
  * @package iLUB\Plugins\TestCron\Config
  */
@@ -13,7 +13,7 @@ interface ITestCron {
 
 
 	/**
-	 * Get the name of the first variable
+	 * Get the expiration threshold after which an anonymous user will be removed from the DB
 	 *
 	 * @return string
 	 */

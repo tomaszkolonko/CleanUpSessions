@@ -8,7 +8,6 @@ use ILIAS\DI\Container;
 use ILIAS\DI\HTTPServices;
 use ILIAS\DI\RBACServices;
 use ILIAS\DI\UIServices;
-use ILIAS\Filesystem\Filesystems;
 use ilLanguage;
 use ilLog;
 use ilObjUser;

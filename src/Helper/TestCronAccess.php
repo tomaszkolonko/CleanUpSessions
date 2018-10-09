@@ -13,10 +13,16 @@ class TestCronAccess {
      */
     protected $db;
 
+    /**
+     * @var $this->logger
+     */
+    protected $logger;
+
     use DIC;
 
     /**
-     * @param ilDBInterface $db
+     *
+     * @throws
      */
     public function __construct() {
         $this->logger = new Logger("TestCronLogger.log");

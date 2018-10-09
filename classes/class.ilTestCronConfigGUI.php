@@ -1,10 +1,9 @@
 <?php
 
+require_once __DIR__ . "/../vendor/autoload.php";
+
 use iLUB\Plugins\TestCron\Helper\DIC;
 use iLUB\Plugins\TestCron\Log\Logger;
-
-
-require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
  * Class ilTestCronConfigGUI
@@ -16,8 +15,14 @@ class ilTestCronConfigGUI extends ilPluginConfigGUI {
 
 	use DIC;
 
+    /**
+     * @var $this->logger
+     */
+    protected $logger;
+
 	/**
 	 * @inheritDoc
+     * @throws
 	 */
 	public function executeCommand() {
 
@@ -29,7 +34,6 @@ class ilTestCronConfigGUI extends ilPluginConfigGUI {
 			case strtolower(testCronMainGUI::class):
 				$h = new testCronMainGUI();
 				$this->ctrl()->forwardCommand($h);
-
 				return;
 		}
 

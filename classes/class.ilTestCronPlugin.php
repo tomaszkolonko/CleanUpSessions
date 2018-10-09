@@ -2,10 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Config\ArConfig;
 use iLUB\Plugins\TestCron\Helper\DIC;
 use iLUB\Plugins\TestCron\Jobs\RunSync;
-
 
 /**
  * Class ilTestCronPlugin
@@ -15,6 +13,7 @@ use iLUB\Plugins\TestCron\Jobs\RunSync;
 class ilTestCronPlugin extends ilCronHookPlugin {
 
 	use DIC;
+
 	const PLUGIN_ID = 'tcron';
 	const PLUGIN_NAME = 'TestCron';
 	/**
