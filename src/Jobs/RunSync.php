@@ -8,7 +8,6 @@ use iLUB\Plugins\TestCron\Helper\TestCronAccess;
 use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
 use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
 use iLUB\Plugins\TestCron\Log\Logger;
-use iLUB\Plugins\TestCron\Sync\SyncSummaryCron;
 
 /**
  * Class RunSync
@@ -16,6 +15,11 @@ use iLUB\Plugins\TestCron\Sync\SyncSummaryCron;
  * @package iLUB\Plugins\TestCron\Jobs
  */
 class RunSync extends AbstractJob {
+
+    /**
+     * @var $this->logger
+     */
+    protected $logger;
 
 	/**
 	 * @return string
@@ -59,6 +63,7 @@ class RunSync extends AbstractJob {
 
 	/**
 	 * @return AbstractResult
+     * @throws
 	 */
 	public function run() {
         $this->logger = new Logger("TestCronLogger.log");

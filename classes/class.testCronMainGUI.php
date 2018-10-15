@@ -32,19 +32,20 @@ class testCronMainGUI {
     protected $logger;
 
 
-	/**
-	 * testCronMainGUI constructor.
-	 */
+    /**
+     * testCronMainGUI constructor.
+     * @throws \ILIAS\Filesystem\Exception\IOException
+     */
 	public function __construct() {
 		$this->pl = ilTestCronPlugin::getInstance();
         $this->logger = new Logger("TestCronLogger.log");
-
 	}
 
 
-	/**
-	 *
-	 */
+    /**
+     * @throws \ILIAS\Filesystem\Exception\IOException
+     * @throws ilCtrlException
+     */
 	public function executeCommand() {
 	    $this->logger->write("testCronMainGUI::executeCommand() \n");
 		$this->initTabs();

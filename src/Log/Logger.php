@@ -13,10 +13,6 @@ class Logger {
 	 * @var string
 	 */
 	protected $path;
-	/**
-	 * @var Stream
-	 */
-	protected $stream;
 
 
 	/**
