@@ -23,10 +23,12 @@ class TestCronDBAccess {
     use DIC;
 
     /**
+     * TestCronDBAccess constructor.
      *
-     * @throws
+     * @param null $logger
+     * @throws \Exception
      */
-    public function __construct() {
+    public function __construct($logger = null) {
         $this->logger = new Logger("TestCronDBAccess");
         $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
         $this->logger->info("inside the constructor");
@@ -38,7 +40,7 @@ class TestCronDBAccess {
      * @inheritdoc
      */
     public function allAnonymousUsers() {
-        $this->logger->info("access all anonymous users... \n");
+        $this->logger->info("access all anonymous users... ");
         $sql = "SELECT * FROM usr_session WHERE user_id = 13";
         $query = $this->db->query($sql);
 

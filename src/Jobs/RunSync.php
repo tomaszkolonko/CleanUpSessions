@@ -7,7 +7,8 @@ use ilCronJob;
 use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
 use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
 use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
-use iLUB\Plugins\TestCron\Log\Logger;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /**
  * Class RunSync
@@ -66,11 +67,12 @@ class RunSync extends AbstractJob {
      * @throws
 	 */
 	public function run() {
-        $this->logger = new Logger("TestCronLogger.log");
-        $this->logger->write("Rsync::run() \n");
+        $this->logger = new Logger("CronSyncLogger");
+        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+        $this->logger->info("Rsync::run() \n");
 		try {
 
-            $anonymous = new TestCronDBAccess();
+            $anonymous = new TestCronDBAccess($this->logger);
             $anonymous->allAnonymousUsers();
 
 

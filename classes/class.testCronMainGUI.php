@@ -51,7 +51,7 @@ class testCronMainGUI {
      * @throws ilCtrlException
      */
 	public function executeCommand() {
-	    $this->logger->write("testCronMainGUI::executeCommand() \n");
+	    $this->logger->info("executeCommand()");
 		$this->initTabs();
 		$nextClass = $this->ctrl()->getNextClass();
 		switch ($nextClass) {
