@@ -3,7 +3,8 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\Helper\DIC;
-use iLUB\Plugins\TestCron\Log\Logger;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /**
  * Class testCronMainGUI
@@ -38,7 +39,10 @@ class testCronMainGUI {
      */
 	public function __construct() {
 		$this->pl = ilTestCronPlugin::getInstance();
-        $this->logger = new Logger("TestCronLogger.log");
+
+        $this->logger = new Logger("TestCronMainGUI");
+        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+        $this->logger->info("yolo");
 	}
 
 
