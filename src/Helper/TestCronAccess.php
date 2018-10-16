@@ -69,4 +69,9 @@ class TestCronAccess {
             ' expiration = ' . $this->db->quote($expiration, 'integer') . ';'
         );
     }
+
+    public function removePluginTableFromDB() {
+        $sql = "DROP TABLE " . ilTestCronPlugin::TABLE_NAME;
+        $this->db->query($sql);
+    }
 }

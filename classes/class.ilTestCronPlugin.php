@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\TestCron\Helper\TestCronAccess;
 use iLUB\Plugins\TestCron\Jobs\RunSync;
 
 /**
@@ -20,12 +21,17 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 	const COLUMN_NAME = 'expiration';
 	const DEFAULT_EXPIRATION_VALUE = 240;
     const EXPIRATION_THRESHOLD = 'expiration_treshold';
+    const ILPLUGIN_TABLE = 'il_plugin';
 
 
 	/**
 	 * @var ilTestCronPlugin
 	 */
 	protected static $instance;
+    /**
+     * @var $this->access
+     */
+	protected $access;
 
 
 	/**
@@ -70,8 +76,9 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 	/**
 	 *
 	 */
-	protected function removeTestCronData() {
-		// TODO: remove tables from DB
+	protected function afterUninstall() {
+		$this->access = new TestCronAccess();
+		$this->access->removePluginTableFromDB();
 	}
 
 }
