@@ -4,7 +4,7 @@ namespace iLUB\Plugins\TestCron\Jobs;
 
 use Exception;
 use ilCronJob;
-use iLUB\Plugins\TestCron\Helper\TestCronAccess;
+use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
 use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
 use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
 use iLUB\Plugins\TestCron\Log\Logger;
@@ -70,7 +70,7 @@ class RunSync extends AbstractJob {
         $this->logger->write("Rsync::run() \n");
 		try {
 
-            $anonymous = new TestCronAccess();
+            $anonymous = new TestCronDBAccess();
             $anonymous->allAnonymousUsers();
 
 

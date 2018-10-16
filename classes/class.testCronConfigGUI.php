@@ -3,7 +3,8 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
-use iLUB\Plugins\TestCron\Helper\TestCronAccess;
+use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
+
 
 /**
  * Class testCronConfigGUI
@@ -32,23 +33,30 @@ class testCronConfigGUI extends testCronMainGUI {
 
 
     /**
-	 *
-	 */
+     *
+     */
 	protected function saveConfig() {
 		$form = new ConfigFormGUI($this);
-		$this->access = new TestCronAccess();
 		if ($form->checkInput()) {
-		    // TODO: fix the for each loop... it's not needed
-			foreach ($form->getInputItemsRecursive() as $item) {
-				$expiration = $form->getInput($item->getPostVar());
-                $this->access->updateExpirationValue($expiration);
-			}
-			ilUtil::sendSuccess($this->pl->txt('msg_successfully_saved'), true);
-			$this->ctrl()->redirect($this);
-		}
-		$form->setValuesByPost();
-		$this->tpl()->setContent($form->getHTML());
+		    $this->checkAndUpdate($form->getInput(ilTestCronPlugin::EXPIRATION_THRESHOLD));
+		} else {
+            ilUtil::sendFailure($this->pl->txt('msg_failed_save'), true);
+        }
+        $this->ctrl()->redirect($this);
 	}
+
+    /**
+     * @param $expiration_value
+     */
+	protected function checkAndUpdate($expiration_value) {
+        $this->access = new TestCronDBAccess();
+        if(is_numeric($expiration_value) && (int)$expiration_value > 0) {
+            $this->access->updateExpirationValue($expiration_value);
+            ilUtil::sendSuccess($this->pl->txt('msg_successfully_saved'), true);
+        } else {
+            ilUtil::sendFailure($this->pl->txt('msg_not_valid_expiration_input'), true);
+        }
+    }
 
     /**
 	 *

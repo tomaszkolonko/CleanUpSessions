@@ -7,7 +7,7 @@ use ilTestCronConfigGUI;
 use ilTestCronPlugin;
 use ilPropertyFormGUI;
 use ilTextInputGUI;
-use iLUB\Plugins\TestCron\Helper\TestCronAccess;
+use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
 use iLUB\Plugins\TestCron\Helper\DIC;
 
 /**
@@ -31,7 +31,7 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 */
 	protected $pl;
     /**
-     * @var TestCronAccess
+     * @var TestCronDBAccess
      */
 	protected $access;
 
@@ -41,7 +41,7 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 */
 	public function __construct($parent_gui) {
 		$this->parent_gui = $parent_gui;
-		$this->access = new TestCronAccess();
+		$this->access = new TestCronDBAccess();
 		$this->pl = ilTestCronPlugin::getInstance();
 		$this->setFormAction($this->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();

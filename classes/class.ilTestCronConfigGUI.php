@@ -3,7 +3,6 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use iLUB\Plugins\TestCron\Helper\DIC;
-use iLUB\Plugins\TestCron\Log\Logger;
 
 /**
  * Class ilTestCronConfigGUI
@@ -15,19 +14,11 @@ class ilTestCronConfigGUI extends ilPluginConfigGUI {
 
 	use DIC;
 
-    /**
-     * @var $this->logger
-     */
-    protected $logger;
-
 	/**
 	 * @inheritDoc
      * @throws
 	 */
 	public function executeCommand() {
-
-	    $this->logger = new Logger("TestCronLogger.log");
-	    $this->logger->write("ilTestCronConfigGUI::executeCommand() \n");
 
 		parent::executeCommand();
 		switch ($this->ctrl()->getNextClass()) {
