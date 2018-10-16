@@ -38,8 +38,8 @@ class testCronConfigGUI extends testCronMainGUI {
 		$form = new ConfigFormGUI($this);
 		$this->access = new TestCronAccess();
 		if ($form->checkInput()) {
+		    // TODO: fix the for each loop... it's not needed
 			foreach ($form->getInputItemsRecursive() as $item) {
-				/** @var ilFormPropertyGUI $item */
 				$expiration = $form->getInput($item->getPostVar());
                 $this->access->updateExpirationValue($expiration);
 			}
