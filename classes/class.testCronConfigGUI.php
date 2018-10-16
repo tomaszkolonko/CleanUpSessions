@@ -2,9 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Config\ArConfig;
-use iLUB\Plugins\TestCron\Config\TestCronConfig;
 use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
+use iLUB\Plugins\TestCron\Helper\TestCronAccess;
 
 /**
  * Class testCronConfigGUI
@@ -16,12 +15,17 @@ class testCronConfigGUI extends testCronMainGUI {
 	const CMD_SAVE_CONFIG = 'saveConfig';
 	const CMD_CANCEL = 'cancel';
 
+    /**
+     * @var $this->access
+     */
+	protected $access;
+
 
 	/**
 	 *
 	 */
 	protected function index() {
-		$form = new ConfigFormGUI($this, new TestCronConfig());
+		$form = new ConfigFormGUI($this);
 
 		$this->tpl()->setContent($form->getHTML());
 	}
@@ -31,13 +35,13 @@ class testCronConfigGUI extends testCronMainGUI {
 	 *
 	 */
 	protected function saveConfig() {
-		$form = new ConfigFormGUI($this, new TestCronConfig());
+		$form = new ConfigFormGUI($this);
+		$this->access = new TestCronAccess();
 		if ($form->checkInput()) {
 			foreach ($form->getInputItemsRecursive() as $item) {
 				/** @var ilFormPropertyGUI $item */
-				$config = ARConfig::getInstanceByKey($item->getPostVar());
-				$config->setValue($form->getInput($item->getPostVar()));
-				$config->save();
+				$expiration = $form->getInput($item->getPostVar());
+                $this->access->updateExpirationValue($expiration);
 			}
 			ilUtil::sendSuccess($this->pl->txt('msg_successfully_saved'), true);
 			$this->ctrl()->redirect($this);

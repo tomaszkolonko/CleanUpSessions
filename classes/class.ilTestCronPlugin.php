@@ -16,6 +16,12 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 
 	const PLUGIN_ID = 'tcron';
 	const PLUGIN_NAME = 'TestCron';
+	const TABLE_NAME = 'tcron_config';
+	const COLUMN_NAME = 'expiration';
+	const DEFAULT_EXPIRATION_VALUE = 240;
+    const EXPIRATION_THRESHOLD = 'expiration_treshold';
+
+
 	/**
 	 * @var ilTestCronPlugin
 	 */

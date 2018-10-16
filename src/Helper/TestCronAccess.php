@@ -5,6 +5,7 @@ namespace iLUB\Plugins\TestCron\Helper;
 
 use ilDB;
 use iLUB\Plugins\TestCron\Log\Logger;
+use ilTestCronPlugin;
 
 
 class TestCronAccess {
@@ -45,5 +46,27 @@ class TestCronAccess {
         }
 
         return ($this->db->numRows($query) > 0);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpirationValue() {
+        $sql = "SELECT expiration FROM tcron_config";
+        $query = $this->db->query($sql);
+        $rec = $this->db->fetchAssoc($query);
+
+        return $rec['expiration'];
+    }
+
+    /**
+     * Updates an entry determined by id with new information
+     *
+     * @param bool $as_obj
+     */
+    public function updateExpirationValue($expiration) {
+        $this->db->manipulate('UPDATE ' . ilTestCronPlugin::TABLE_NAME . ' SET' .
+            ' expiration = ' . $this->db->quote($expiration, 'integer') . ';'
+        );
     }
 }
