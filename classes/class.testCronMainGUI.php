@@ -35,14 +35,14 @@ class testCronMainGUI {
 
     /**
      * testCronMainGUI constructor.
-     * @throws \ILIAS\Filesystem\Exception\IOException
+     * @throws Exception
      */
 	public function __construct() {
 		$this->pl = ilTestCronPlugin::getInstance();
 
         $this->logger = new Logger("TestCronMainGUI");
         $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
-        $this->logger->info("yolo");
+        $this->logger->info("Logger has been registered");
 	}
 
 
@@ -68,17 +68,17 @@ class testCronMainGUI {
 	}
 
 
-	/**
-	 *
-	 */
+    /**
+     * Redirect to the Config GUI of the Plugin
+     */
 	protected function index() {
 		$this->ctrl()->redirectByClass(testCronConfigGUI::class);
 	}
 
 
-	/**
-	 *
-	 */
+    /**
+     * Add tabs to the main Config GUI
+     */
 	protected function initTabs() {
 		$this->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG), $this->ctrl()
 			->getLinkTargetByClass(testCronConfigGUI::class));

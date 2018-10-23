@@ -20,44 +20,66 @@ class TestCronDBAccess {
      */
     protected $logger;
 
-    /**
-     *
-     */
     use DIC;
 
     /**
-     * TestCronDBAccess constructor.
+     * TestCronDBAccess constructor. Initializes Monolog logger. Logs to root directory of the plugin.
      *
      * @param null $logger
      * @throws \Exception
      */
-    public function __construct($logger = null) {
-        if($logger == null) {
-            $this->logger = new Logger("TestCronDBAccess");
-            $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
-        }
+    public function __construct() {
+        $this->logger = new Logger("TestCronDBAccess");
+        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
         $this->logger->info("inside the constructor");
-        $this->db = $this->dic()->database();
 
+        $this->db = $this->dic()->database();
     }
 
     /**
-     * @inheritdoc
+     * Logs all anonymous sessions to the log ilTestCronPlugin::LOG_DESTINATION and returns the number of
+     * all active anonymous sessions
+     *
+     * @return int
      */
-    public function allAnonymousUsers() {
+    public function allAnonymousSessions() {
         $this->logger->info("access all anonymous users... ");
+
         $sql = "SELECT * FROM usr_session WHERE user_id = 13";
         $query = $this->db->query($sql);
-        $counter = 0;
+        $counter = 1;
         while ($rec = $this->db->fetchAssoc($query)) {
-            $msg = '#' . $counter++ . 'id: ' . $rec['user_id'] . ' valid till: ' . date('Y-m-d - H:i:s', $rec['ctime']) . "\n";
+            $msg = '#' . $counter++ . '  id: ' . $rec['user_id'] . ' valid till: ' . date('Y-m-d - H:i:s', $rec['expires']) . "\n";
             $this->logger->info($msg);
         }
 
-        return ($this->db->numRows($query) > 0);
+        return $counter;
     }
 
     /**
+     * Logs all exppired anonymous sessions to the log ilTestCronPlugin::LOG_DESTINATION and returns the number of
+     * all expired anonymous sessions
+     *
+     * @return int
+     */
+    public function expiredAnonymousUsers() {
+        $thresholdBoundary = $this->getExpirationValue();
+        $sql = "SELECT * FROM usr_session WHERE user_id = 13 AND createtime < %s";
+        $set = $this->db->queryF($sql, [ 'integer' ], [ $thresholdBoundary ]);
+
+        $counter = 1;
+        while($rec = $this->db->fetchAssoc($set)) {
+            $msg = 'Expired Users -> #' . $counter++ . '  id: ' . $rec['user_id'] . ' valid till: ' .
+                date('Y-m-d - H:i:s', $rec['expires']) . "\n";
+            $this->logger->info($msg);
+        }
+
+        return $counter;
+    }
+
+    /**
+     * Returns the set expiration threshold set in the config
+     *
      * @return mixed
      */
     public function getExpirationValue() {
@@ -68,17 +90,34 @@ class TestCronDBAccess {
         return $rec['expiration'];
     }
 
-    public function removeAnonymousOlderThan($expirationThreshold) {
+    /**
+     * Delets all the expired anonymous sessions from the DB and logs the
+     * remaining non-expired anonymous sessions.
+     */
+    public function removeAnonymousSessionsOlderThanExpirationThreshold() {
+
+        $all = $this->allAnonymousSessions();
+
+        $sql = "DELETE FROM usr_session WHERE user_id = 13 AND createtime < %s";
+        $this->db->manipulateF($sql, [ 'integer' ], [ $this->getThresholdBoundary() ]);
+
+        $after = $this->allAnonymousSessions();
+
+        // Only for debugging:
+        $this->logger->info($all - $after . " anonymous session(s) have been deleted");
+        $this->logger->info("There are " . $after . " non-expired anonymous sessions remaining");
+    }
+
+    /**
+     * Returns the latest value in unix system time format, that is considered non-expired. All values
+     * below the returned one are considered expired.
+     *
+     * @return float|int
+     */
+    private function getThresholdBoundary() {
         $currentTime = time();
-        $thresholdBoundary = $currentTime - $expirationThreshold*60;
-
-        $sql = "SELECT * FROM usr_session WHERE user_id = 13 AND createtime < %s";
-        $set = $this->db->queryF($sql, [ 'integer' ], [ $thresholdBoundary ]);
-        $rec = $this->db->fetchAssoc($set);
-        $this->logger->info( "removeAnonymousOlderThanExpiration has found " . sizeof($rec) . " elements");
-
-        return TRUE;
-           
+        $expirationThreshold = $this->getExpirationValue();
+        return $currentTime - $expirationThreshold*60;
     }
 
     /**

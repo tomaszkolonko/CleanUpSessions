@@ -22,9 +22,9 @@ class testCronConfigGUI extends testCronMainGUI {
 	protected $access;
 
 
-	/**
-	 *
-	 */
+    /**
+     * Creates a new ConfigFormGUI and sets the Content
+     */
 	protected function index() {
 		$form = new ConfigFormGUI($this);
 
@@ -33,7 +33,7 @@ class testCronConfigGUI extends testCronMainGUI {
 
 
     /**
-     *
+     * Checks the form input and forwards to checkAndUpdate()
      */
 	protected function saveConfig() {
 		$form = new ConfigFormGUI($this);
@@ -46,7 +46,11 @@ class testCronConfigGUI extends testCronMainGUI {
 	}
 
     /**
+     * $expiration_value must be numeric and biger than 0 for the check to pass. If check passes value gets
+     * updated into DB
+     *
      * @param $expiration_value
+     * @throws Exception
      */
 	protected function checkAndUpdate($expiration_value) {
         $this->access = new TestCronDBAccess();

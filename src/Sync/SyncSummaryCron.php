@@ -23,11 +23,10 @@ class SyncSummaryCron {
 
 
 	/**
-	 * @param IOriginSync $originSync
 	 *
 	 * @return string
 	 */
-	private function renderOneSync(IOriginSync $originSync) {
+	private function renderOneSync() {
 		// TODO: create nice summary message
 
         $msg = "message";

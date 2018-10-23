@@ -7,6 +7,7 @@ use ilCronJob;
 use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
 use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
 use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
+use ilTestCronPlugin;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -69,18 +70,13 @@ class RunSync extends AbstractJob {
 	public function run() {
         $this->logger = new Logger("CronSyncLogger");
         $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+
         $this->logger->info("Rsync::run() \n");
 		try {
 
-            $anonymous = new TestCronDBAccess($this->logger);
-            $anonymous->allAnonymousUsers();
-            $expirationThreshold = $anonymous->getExpirationValue();
-            if($anonymous->removeAnonymousOlderThan($expirationThreshold)) {
-                $this->logger->info("Removal of anonymous successfull) \n");
-            } else {
-                $this->logger->info("Removal of anonymous un-successfull \n");
-            }
-
+            $tc = new TestCronDBAccess();
+            $tc->allAnonymousSessions();
+            $tc->removeAnonymousSessionsOlderThanExpirationThreshold();
 
 			return ResultFactory::ok("everything's fine.");
 		} catch (Exception $e) {

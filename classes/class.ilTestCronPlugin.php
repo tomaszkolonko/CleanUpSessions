@@ -64,7 +64,6 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 
 	/**
 	 * @param string $a_job_id
-	 *
 	 * @return ilCronJob
 	 */
 	public function getCronJobInstance($a_job_id): ilCronJob {
@@ -74,7 +73,7 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 
 
 	/**
-	 *
+	 * AfterUninstall deletes the tables from the DB
 	 */
 	protected function afterUninstall() {
 		$this->access = new TestCronDBAccess();

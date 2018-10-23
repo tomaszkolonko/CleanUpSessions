@@ -14,10 +14,10 @@ class ilTestCronConfigGUI extends ilPluginConfigGUI {
 
 	use DIC;
 
-	/**
-	 * @inheritDoc
-     * @throws
-	 */
+    /**
+     * @inheritdoc
+     * @throws ilCtrlException
+     */
 	public function executeCommand() {
 
 		parent::executeCommand();
@@ -32,6 +32,7 @@ class ilTestCronConfigGUI extends ilPluginConfigGUI {
 	}
 
 	/**
+     * @inheritdoc
 	 * @param string $cmd
 	 */
 	public function performCommand($cmd) {
