@@ -74,6 +74,12 @@ class RunSync extends AbstractJob {
 
             $anonymous = new TestCronDBAccess($this->logger);
             $anonymous->allAnonymousUsers();
+            $expirationThreshold = $anonymous->getExpirationValue();
+            if($anonymous->removeAnonymousOlderThan($expirationThreshold)) {
+                $this->logger->info("Removal of anonymous successfull) \n");
+            } else {
+                $this->logger->info("Removal of anonymous un-successfull \n");
+            }
 
 
 			return ResultFactory::ok("everything's fine.");
