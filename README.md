@@ -6,7 +6,7 @@ Start at your ILIAS root directory
 ```
 mkdir -p Customizing/global/plugins/Services/Cron/CronHook
 cd Customizing/global/plugins/Services/Cron/CronHook
-git clone https://github.com/tomaszkolonko/TestCronPlugin
+git clone git@github.com:tomaszkolonko/TestCron.git
 ```
 
 ### Install dependencies via composer
