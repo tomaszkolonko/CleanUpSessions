@@ -2,16 +2,16 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\UI\ConfigFormGUI;
-use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
+use iLUB\Plugins\CleanUpSessions\UI\ConfigFormGUI;
+use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
 
 
 /**
- * Class testCronConfigGUI
+ * Class cleanUpSessionsConfigGUI
  *
  * @package
  */
-class testCronConfigGUI extends testCronMainGUI {
+class cleanUpSessionsConfigGUI extends cleanUpSessionsMainGUI {
 
 	const CMD_SAVE_CONFIG = 'saveConfig';
 	const CMD_CANCEL = 'cancel';
@@ -38,7 +38,7 @@ class testCronConfigGUI extends testCronMainGUI {
 	protected function saveConfig() {
 		$form = new ConfigFormGUI($this);
 		if ($form->checkInput()) {
-		    $this->checkAndUpdate($form->getInput(ilTestCronPlugin::EXPIRATION_THRESHOLD));
+		    $this->checkAndUpdate($form->getInput(ilCleanUpSessionsPlugin::EXPIRATION_THRESHOLD));
 		} else {
             ilUtil::sendFailure($this->pl->txt('msg_failed_save'), true);
         }
@@ -46,14 +46,14 @@ class testCronConfigGUI extends testCronMainGUI {
 	}
 
     /**
-     * $expiration_value must be numeric and biger than 0 for the check to pass. If check passes value gets
+     * $expiration_value must be numeric and bigger than 0 for the check to pass. If check passes value gets
      * updated into DB
      *
      * @param $expiration_value
      * @throws Exception
      */
 	protected function checkAndUpdate($expiration_value) {
-        $this->access = new TestCronDBAccess();
+        $this->access = new CleanUpSessionsDBAccess();
         if(is_numeric($expiration_value) && (int)$expiration_value > 0) {
             $this->access->updateExpirationValue($expiration_value);
             ilUtil::sendSuccess($this->pl->txt('msg_successfully_saved'), true);

@@ -1,13 +1,13 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\Jobs\Result;
+namespace iLUB\Plugins\CleanUpSessions\Jobs\Result;
 
 use ilCronJobResult;
 
 /**
  * Class AbstractResult
  *
- * @package iLUB\Plugins\TestCron\Jobs\Result
+ * @package iLUB\Plugins\CleanUpSessions\Jobs\Result
  * @author  Fabian Schmid <fs@studer-raimann.ch>
  */
 abstract class AbstractResult extends ilCronJobResult {

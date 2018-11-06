@@ -2,30 +2,30 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Helper\DIC;
-use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
-use iLUB\Plugins\TestCron\Jobs\RunSync;
+use iLUB\Plugins\CleanUpSessions\Helper\DIC;
+use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
+use iLUB\Plugins\CleanUpSessions\Jobs\RunSync;
 
 /**
- * Class ilTestCronPlugin
+ * Class ilCleanUpSessionsPlugin
  *
  * @package
  */
-class ilTestCronPlugin extends ilCronHookPlugin {
+class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 
 	use DIC;
 
-	const PLUGIN_ID = 'tcron';
-	const PLUGIN_NAME = 'TestCron';
-	const TABLE_NAME = 'tcron_config';
+	const PLUGIN_ID = 'clean_ses';
+	const PLUGIN_NAME = 'CleanUpSessions';
+	const TABLE_NAME = 'clean_ses_cron';
 	const COLUMN_NAME = 'expiration';
 	const DEFAULT_EXPIRATION_VALUE = 240;
     const EXPIRATION_THRESHOLD = 'expiration_threshold';
     const ILPLUGIN_TABLE = 'il_plugin';
-    const LOG_DESTINATION = './Customizing/global/plugins/Services/Cron/CronHook/TestCron/app.log';
+    const LOG_DESTINATION = './Customizing/global/plugins/Services/Cron/CronHook/CleanUpSessions/app.log';
 
 	/**
-	 * @var ilTestCronPlugin
+	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected static $instance;
     /**
@@ -43,9 +43,9 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 
 
 	/**
-	 * @return ilTestCronPlugin
+	 * @return ilCleanUpSessionsPlugin
 	 */
-	public static function getInstance(): ilTestCronPlugin {
+	public static function getInstance(): ilCleanUpSessionsPlugin {
 		if (self::$instance === NULL) {
 			self::$instance = new self();
 		}
@@ -67,7 +67,7 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 	 * @return ilCronJob
 	 */
 	public function getCronJobInstance($a_job_id): ilCronJob {
-	    $a_job_id = "\iLUB\Plugins\TestCron\Jobs\RunSync";
+	    $a_job_id = "\iLUB\Plugins\CleanUpSessions\Jobs\RunSync";
 		return new $a_job_id();
 	}
 
@@ -76,7 +76,7 @@ class ilTestCronPlugin extends ilCronHookPlugin {
 	 * AfterUninstall deletes the tables from the DB
 	 */
 	protected function afterUninstall() {
-		$this->access = new TestCronDBAccess();
+		$this->access = new CleanUpSessionsDBAccess();
 		$this->access->removePluginTableFromDB();
 	}
 

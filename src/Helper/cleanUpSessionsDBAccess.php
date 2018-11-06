@@ -1,15 +1,15 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\Helper;
+namespace iLUB\Plugins\CleanUpSessions\Helper;
 
 
 use ilDB;
-use ilTestCronPlugin;
+use ilCleanUpSessionsPlugin;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 
-class TestCronDBAccess {
+class CleanUpSessionsDBAccess {
     /**
      * @var ilDB
      */
@@ -23,20 +23,20 @@ class TestCronDBAccess {
     use DIC;
 
     /**
-     * TestCronDBAccess constructor. Initializes Monolog logger. Logs to root directory of the plugin.
+     * CleanUpSessionsDBAccess constructor. Initializes Monolog logger. Logs to root directory of the plugin.
      *
      * @param null $logger
      * @throws \Exception
      */
     public function __construct() {
-        $this->logger = new Logger("TestCronDBAccess");
-        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+        $this->logger = new Logger("CleanUpSessionsDBAccess");
+        $this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
 
         $this->db = $this->dic()->database();
     }
 
     /**
-     * Logs all anonymous sessions to the log ilTestCronPlugin::LOG_DESTINATION and returns the number of
+     * Logs all anonymous sessions to the log ilCleanUpSessionsPlugin::LOG_DESTINATION and returns the number of
      * all active anonymous sessions
      *
      * @return int
@@ -56,7 +56,7 @@ class TestCronDBAccess {
     }
 
     /**
-     * Logs all exppired anonymous sessions to the log ilTestCronPlugin::LOG_DESTINATION and returns the number of
+     * Logs all exppired anonymous sessions to the log ilCleanUpSessionsPlugin::LOG_DESTINATION and returns the number of
      * all expired anonymous sessions
      *
      * @return int
@@ -125,7 +125,7 @@ class TestCronDBAccess {
      * @param bool $as_obj
      */
     public function updateExpirationValue($expiration) {
-        $this->db->manipulate('UPDATE ' . ilTestCronPlugin::TABLE_NAME . ' SET' .
+        $this->db->manipulate('UPDATE ' . ilCleanUpSessionsPlugin::TABLE_NAME . ' SET' .
             ' expiration = ' . $this->db->quote($expiration, 'integer') . ';'
         );
     }
@@ -134,7 +134,7 @@ class TestCronDBAccess {
      * Removes the table from DB after uninstall is triggered.
      */
     public function removePluginTableFromDB() {
-        $sql = "DROP TABLE " . ilTestCronPlugin::TABLE_NAME;
+        $sql = "DROP TABLE " . ilCleanUpSessionsPlugin::TABLE_NAME;
         $this->db->query($sql);
     }
 }

@@ -5,7 +5,7 @@
   },
   "autoload": {
     "psr-4": {
-      "iLUB\\Plugins\\TestCron\\": "src/"
+      "iLUB\\Plugins\\CleanUpSessions\\": "src/"
     },
     "classmap": [
       "classes",

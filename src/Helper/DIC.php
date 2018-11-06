@@ -1,6 +1,6 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\Helper;
+namespace iLUB\Plugins\CleanUpSessions\Helper;
 
 use ilCtrl;
 use ilDBInterface;
@@ -20,7 +20,7 @@ use ilTree;
 /**
  * Trait DIC
  *
- * @package iLUB\Plugins\TestCron\Helper
+ * @package iLUB\Plugins\CleanUpSessions\Helper
  */
 trait DIC {
 

@@ -3,9 +3,9 @@
 /** @var ilDB $ilDB */
 global $ilDB;
 $db = $ilDB;
-require_once('Customizing/global/plugins/Services/Cron/CronHook/TestCron/classes/class.ilTestCronPlugin.php');
+require_once('Customizing/global/plugins/Services/Cron/CronHook/CleanUpSessions/classes/class.ilCleanUpSessionsPlugin.php');
 
-if (! $db->tableExists(ilTestCronPlugin::TABLE_NAME)) {
+if (! $db->tableExists(ilCleanUpSessionsPlugin::TABLE_NAME)) {
     $fields = array(
         'expiration' => array(
             'type' => 'integer',
@@ -13,10 +13,10 @@ if (! $db->tableExists(ilTestCronPlugin::TABLE_NAME)) {
             'notnull' => TRUE
         )
     );
-    $db->createTable(ilTestCronPlugin::TABLE_NAME, $fields);
-    $db->insert(ilTestCronPlugin::TABLE_NAME, array(
-            ilTestCronPlugin::COLUMN_NAME => array(
-                    'integer', ilTestCronPlugin::DEFAULT_EXPIRATION_VALUE
+    $db->createTable(ilCleanUpSessionsPlugin::TABLE_NAME, $fields);
+    $db->insert(ilCleanUpSessionsPlugin::TABLE_NAME, array(
+            ilCleanUpSessionsPlugin::COLUMN_NAME => array(
+                    'integer', ilCleanUpSessionsPlugin::DEFAULT_EXPIRATION_VALUE
             )
     ));
 }

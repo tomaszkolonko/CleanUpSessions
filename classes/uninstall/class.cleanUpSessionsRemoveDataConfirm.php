@@ -2,14 +2,14 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 
 /**
- * Class TestCronRemoveDataConfirm
+ * Class CleanUpSessionsRemoveDataConfirm
  *
- * @ilCtrl_isCalledBy TestCronRemoveDataConfirm: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy CleanUpSessionsRemoveDataConfirm: ilUIPluginRouterGUI
  */
-class TestCronRemoveDataConfirm {
+class CleanUpSessionsRemoveDataConfirm {
 
 	use DIC;
 
@@ -22,7 +22,7 @@ class TestCronRemoveDataConfirm {
 
 
 	/**
-	 * @var ilTestCronPlugin
+	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected $pl;
 
@@ -31,7 +31,7 @@ class TestCronRemoveDataConfirm {
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilTestCronPlugin::getInstance();
+		$this->pl = ilCleanUpSessionsPlugin::getInstance();
 	}
 
 
@@ -71,7 +71,7 @@ class TestCronRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function confirmRemoveTestCronData() {
+	protected function confirmRemoveCleanUpSessionsData() {
         // TODO: ?
 	}
 
@@ -79,7 +79,7 @@ class TestCronRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function deactivateTestCron() {
+	protected function deactivateCleanUpSessions() {
         // TODO: ?
 	}
 
@@ -87,7 +87,7 @@ class TestCronRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function setKeepTestCronData() {
+	protected function setKeepCleanUpSessionsData() {
         // TODO: ?
 	}
 
@@ -95,7 +95,7 @@ class TestCronRemoveDataConfirm {
 	/**
 	 *
 	 */
-	protected function setRemoveTestCronData() {
+	protected function setRemoveCleanUpSessionsData() {
         // TODO: ?
 	}
 }

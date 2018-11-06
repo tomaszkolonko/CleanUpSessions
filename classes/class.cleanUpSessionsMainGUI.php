@@ -2,19 +2,19 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 /**
- * Class testCronMainGUI
+ * Class cleanUpSessionsMainGUI
  *
  * @package
  *
- * @ilCtrl_IsCalledBy testCronMainGUI: ilTestCronConfigGUI, ilObjComponentSettingsGUI
- * @ilCtrl_calls      testCronMainGUI: testCronConfigGUI
+ * @ilCtrl_IsCalledBy cleanUpSessionsMainGUI: ilCleanUpSessionsConfigGUI, ilObjComponentSettingsGUI
+ * @ilCtrl_calls      cleanUpSessionsMainGUI: cleanUpSessionsConfigGUI
  */
-class testCronMainGUI {
+class cleanUpSessionsMainGUI {
 
 	use DIC;
 
@@ -23,7 +23,7 @@ class testCronMainGUI {
 	const CMD_INDEX = 'index';
 
 	/**
-	 * @var ilTestCronPlugin
+	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected $pl;
 
@@ -34,14 +34,14 @@ class testCronMainGUI {
 
 
     /**
-     * testCronMainGUI constructor.
+     * cleanUpSessionsMainGUI constructor.
      * @throws Exception
      */
 	public function __construct() {
-		$this->pl = ilTestCronPlugin::getInstance();
+		$this->pl = ilCleanUpSessionsPlugin::getInstance();
 
-        $this->logger = new Logger("TestCronMainGUI");
-        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+        $this->logger = new Logger("CleanUpSessionsMainGUI");
+        $this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
         $this->logger->info("Logger has been registered");
 	}
 
@@ -55,8 +55,8 @@ class testCronMainGUI {
 		$this->initTabs();
 		$nextClass = $this->ctrl()->getNextClass();
 		switch ($nextClass) {
-			case strtolower(testCronConfigGUI::class):
-				$this->ctrl()->forwardCommand(new testCronConfigGUI());
+			case strtolower(cleanUpSessionsConfigGUI::class):
+				$this->ctrl()->forwardCommand(new cleanUpSessionsConfigGUI());
 				break;
 			default:
 				$cmd = $this->ctrl()->getCmd(self::CMD_INDEX);
@@ -70,7 +70,7 @@ class testCronMainGUI {
      * Redirect to the Config GUI of the Plugin
      */
 	protected function index() {
-		$this->ctrl()->redirectByClass(testCronConfigGUI::class);
+		$this->ctrl()->redirectByClass(cleanUpSessionsConfigGUI::class);
 	}
 
 
@@ -79,7 +79,7 @@ class testCronMainGUI {
      */
 	protected function initTabs() {
 		$this->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG), $this->ctrl()
-			->getLinkTargetByClass(testCronConfigGUI::class));
+			->getLinkTargetByClass(cleanUpSessionsConfigGUI::class));
 
 	}
 

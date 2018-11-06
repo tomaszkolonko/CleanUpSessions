@@ -1,11 +1,11 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\Sync;
+namespace iLUB\Plugins\CleanUpSessions\Sync;
 
 /**
  * Class SyncSummaryCron
  *
- * @package iLUB\Plugins\TestCron\Sync
+ * @package iLUB\Plugins\CleanUpSessions\Sync
  */
 class SyncSummaryCron {
 
