@@ -21,8 +21,8 @@ class ilCleanUpSessionsConfigGUI extends ilPluginConfigGUI {
 		parent::executeCommand();
 		switch ($this->ctrl()->getNextClass()) {
 			case strtolower(cleanUpSessionsMainGUI::class):
-				$h = new cleanUpSessionsMainGUI();
-				$this->ctrl()->forwardCommand($h);
+				$mainGUI = new cleanUpSessionsMainGUI();
+				$this->ctrl()->forwardCommand($mainGUI);
 				return;
 		}
 

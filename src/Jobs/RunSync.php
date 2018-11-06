@@ -64,12 +64,13 @@ class RunSync extends AbstractJob {
 
 
 	/**
-	 * @return AbstractResult
+	 * @return \ilCronJobResult
      * @throws
 	 */
 	public function run() {
         $this->logger = new Logger("CronSyncLogger");
         $this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
+        $jobResult = new \ilCronJobResult();
 
         $this->logger->info("Rsync::run() \n");
 		try {
@@ -78,9 +79,13 @@ class RunSync extends AbstractJob {
             $tc->allAnonymousSessions();
             $tc->removeAnonymousSessionsOlderThanExpirationThreshold();
 
-			return ResultFactory::ok("everything's fine.");
+			$jobResult->setStatus($jobResult::STATUS_OK);
+			$jobResult->setMessage("Everything worked fine.");
+			return $jobResult;
 		} catch (Exception $e) {
-			return ResultFactory::error("there was an error");
+		    $jobResult->setStatus($jobResult::STATUS_CRASHED);
+		    $jobResult->setMessage("There was an error.");
+			return $jobResult;
 		}
 	}
 }
