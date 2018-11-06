@@ -58,8 +58,6 @@ class testCronMainGUI {
 			case strtolower(testCronConfigGUI::class):
 				$this->ctrl()->forwardCommand(new testCronConfigGUI());
 				break;
-			case strtolower(testCronDataGUI::class):
-				break;
 			default:
 				$cmd = $this->ctrl()->getCmd(self::CMD_INDEX);
 				$this->{$cmd}();

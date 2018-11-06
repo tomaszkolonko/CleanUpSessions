@@ -31,7 +31,6 @@ class TestCronDBAccess {
     public function __construct() {
         $this->logger = new Logger("TestCronDBAccess");
         $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
-        $this->logger->info("inside the constructor");
 
         $this->db = $this->dic()->database();
     }
