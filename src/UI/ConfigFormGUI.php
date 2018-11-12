@@ -17,7 +17,7 @@ use iLUB\Plugins\CleanUpSessions\Helper\DIC;
  */
 class ConfigFormGUI extends ilPropertyFormGUI {
 
-	use DIC;
+	# use DIC;
 	/**
 	 * @var ilCleanUpSessionsConfigGUI
 	 */
@@ -30,9 +30,9 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected $pl;
-    /**
-     * @var CleanUpSessionsDBAccess
-     */
+	/**
+	 * @var CleanUpSessionsDBAccess
+	 */
 	protected $access;
 
 
@@ -40,10 +40,11 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 * @param CleanUpSessionsConfigGUI $parent_gui
 	 */
 	public function __construct($parent_gui) {
+		global $DIC;
 		$this->parent_gui = $parent_gui;
 		$this->access = new CleanUpSessionsDBAccess();
 		$this->pl = ilCleanUpSessionsPlugin::getInstance();
-		$this->setFormAction($this->ctrl()->getFormAction($this->parent_gui));
+		$this->setFormAction($DIC->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();
 		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
 		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));

@@ -12,7 +12,7 @@ use iLUB\Plugins\CleanUpSessions\Helper\DIC;
  */
 abstract class AbstractJob extends ilCronJob {
 
-	use DIC;
+	# use DIC;
 
 
 	/**

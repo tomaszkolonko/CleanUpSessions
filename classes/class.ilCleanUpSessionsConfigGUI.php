@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\CleanUpSessions\Helper\DIC;
+// use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 
 /**
  * Class ilCleanUpSessionsConfigGUI
@@ -10,27 +10,28 @@ use iLUB\Plugins\CleanUpSessions\Helper\DIC;
  */
 class ilCleanUpSessionsConfigGUI extends ilPluginConfigGUI {
 
-	use DIC;
+	# use DIC;
 
-    /**
-     * @inheritdoc
-     * @throws ilCtrlException
-     */
+	/**
+	 * @inheritdoc
+	 * @throws ilCtrlException
+	 */
 	public function executeCommand() {
+		global $DIC;
 
 		parent::executeCommand();
-		switch ($this->ctrl()->getNextClass()) {
+		switch ($DIC->ctrl()->getNextClass()) {
 			case strtolower(cleanUpSessionsMainGUI::class):
 				$mainGUI = new cleanUpSessionsMainGUI();
-				$this->ctrl()->forwardCommand($mainGUI);
+				$DIC->ctrl()->forwardCommand($mainGUI);
 				return;
 		}
 
-        $this->ctrl()->redirectByClass([ cleanUpSessionsMainGUI::class ]);
+		$DIC->ctrl()->redirectByClass([cleanUpSessionsMainGUI::class]);
 	}
 
 	/**
-     * @inheritdoc
+	 * @inheritdoc
 	 * @param string $cmd
 	 */
 	public function performCommand($cmd) {

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use iLUB\Plugins\CleanUpSessions\Helper\DIC;
+// use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
 use iLUB\Plugins\CleanUpSessions\Jobs\RunSync;
 
@@ -13,24 +13,24 @@ use iLUB\Plugins\CleanUpSessions\Jobs\RunSync;
  */
 class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 
-	use DIC;
+	# use DIC;
 
 	const PLUGIN_ID = 'clean_ses';
 	const PLUGIN_NAME = 'CleanUpSessions';
 	const TABLE_NAME = 'clean_ses_cron';
 	const COLUMN_NAME = 'expiration';
 	const DEFAULT_EXPIRATION_VALUE = 240;
-    const EXPIRATION_THRESHOLD = 'expiration_threshold';
-    const ILPLUGIN_TABLE = 'il_plugin';
-    const LOG_DESTINATION = './Customizing/global/plugins/Services/Cron/CronHook/CleanUpSessions/app.log';
+	const EXPIRATION_THRESHOLD = 'expiration_threshold';
+	const ILPLUGIN_TABLE = 'il_plugin';
+	const LOG_DESTINATION = './Customizing/global/plugins/Services/Cron/CronHook/CleanUpSessions/app.log';
 
 	/**
 	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected static $instance;
-    /**
-     * @var $this->access
-     */
+	/**
+	 * @var $this ->access
+	 */
 	protected $access;
 
 
@@ -58,7 +58,7 @@ class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 	 * @return ilCronJob[]
 	 */
 	public function getCronJobInstances(): array {
-		return [ new RunSync() ];
+		return [new RunSync()];
 	}
 
 
@@ -67,7 +67,7 @@ class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 	 * @return ilCronJob
 	 */
 	public function getCronJobInstance($a_job_id): ilCronJob {
-	    $a_job_id = "\iLUB\Plugins\CleanUpSessions\Jobs\RunSync";
+		$a_job_id = "\iLUB\Plugins\CleanUpSessions\Jobs\RunSync";
 		return new $a_job_id();
 	}
 
