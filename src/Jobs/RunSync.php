@@ -18,10 +18,10 @@ use Monolog\Handler\StreamHandler;
  */
 class RunSync extends AbstractJob {
 
-    /**
-     * @var $this->logger
-     */
-    protected $logger;
+	/**
+	 * @var logger
+	 */
+	protected $logger;
 
 	/**
 	 * @return string
@@ -65,26 +65,26 @@ class RunSync extends AbstractJob {
 
 	/**
 	 * @return \ilCronJobResult
-     * @throws
+	 * @throws
 	 */
 	public function run() {
-        $this->logger = new Logger("CronSyncLogger");
-        $this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
-        $jobResult = new \ilCronJobResult();
+		$this->logger = new Logger("CronSyncLogger");
+		$this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
+		$jobResult = new \ilCronJobResult();
 
-        $this->logger->info("Rsync::run() \n");
+		$this->logger->info("Rsync::run() \n");
 		try {
 
-            $tc = new CleanUpSessionsDBAccess();
-            $tc->allAnonymousSessions();
-            $tc->removeAnonymousSessionsOlderThanExpirationThreshold();
+			$tc = new CleanUpSessionsDBAccess();
+			$tc->allAnonymousSessions();
+			$tc->removeAnonymousSessionsOlderThanExpirationThreshold();
 
 			$jobResult->setStatus($jobResult::STATUS_OK);
 			$jobResult->setMessage("Everything worked fine.");
 			return $jobResult;
 		} catch (Exception $e) {
-		    $jobResult->setStatus($jobResult::STATUS_CRASHED);
-		    $jobResult->setMessage("There was an error.");
+			$jobResult->setStatus($jobResult::STATUS_CRASHED);
+			$jobResult->setMessage("There was an error.");
 			return $jobResult;
 		}
 	}

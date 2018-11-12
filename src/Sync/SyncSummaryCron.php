@@ -10,7 +10,7 @@ namespace iLUB\Plugins\CleanUpSessions\Sync;
 class SyncSummaryCron {
 
 	/**
-	 * @inheritDoc
+	 * @return string
 	 */
 	public function getOutputAsString() {
 		$return = "";
@@ -23,13 +23,12 @@ class SyncSummaryCron {
 
 
 	/**
-	 *
 	 * @return string
 	 */
 	private function renderOneSync() {
 		// TODO: create nice summary message
 
-        $msg = "message";
+		$msg = "message";
 
 		return $msg;
 	}

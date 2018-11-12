@@ -8,9 +8,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-class ExpirationValueTest extends TestCase
-{
-    public function testYolo() {
-        $this->assertEquals(2, 2);
-    }
+class ExpirationValueTest extends TestCase {
+	public function testYolo() {
+		$this->assertEquals(2, 2);
+	}
 }

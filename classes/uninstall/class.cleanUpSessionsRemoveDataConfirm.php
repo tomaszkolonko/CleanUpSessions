@@ -39,7 +39,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	public function executeCommand() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -48,7 +48,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 * @param string $html
 	 */
 	protected function show(string $html) {
-	    // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -56,7 +56,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 * @param string $cmd
 	 */
 	protected function redirectToPlugins(string $cmd) {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -64,7 +64,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	protected function cancel() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -72,7 +72,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	protected function confirmRemoveCleanUpSessionsData() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -80,7 +80,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	protected function deactivateCleanUpSessions() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -88,7 +88,7 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	protected function setKeepCleanUpSessionsData() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -96,6 +96,6 @@ class CleanUpSessionsRemoveDataConfirm {
 	 *
 	 */
 	protected function setRemoveCleanUpSessionsData() {
-        // TODO: ?
+		// TODO: ?
 	}
 }
