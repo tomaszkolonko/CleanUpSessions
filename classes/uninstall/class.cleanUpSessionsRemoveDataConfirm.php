@@ -2,14 +2,14 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 
 /**
- * Class TestCronRemoveDataConfirm
+ * Class CleanUpSessionsRemoveDataConfirm
  *
- * @ilCtrl_isCalledBy TestCronRemoveDataConfirm: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy CleanUpSessionsRemoveDataConfirm: ilUIPluginRouterGUI
  */
-class TestCronRemoveDataConfirm {
+class CleanUpSessionsRemoveDataConfirm {
 
 	use DIC;
 
@@ -22,7 +22,7 @@ class TestCronRemoveDataConfirm {
 
 
 	/**
-	 * @var ilTestCronPlugin
+	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected $pl;
 
@@ -31,7 +31,7 @@ class TestCronRemoveDataConfirm {
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilTestCronPlugin::getInstance();
+		$this->pl = ilCleanUpSessionsPlugin::getInstance();
 	}
 
 
@@ -39,7 +39,7 @@ class TestCronRemoveDataConfirm {
 	 *
 	 */
 	public function executeCommand() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -48,7 +48,7 @@ class TestCronRemoveDataConfirm {
 	 * @param string $html
 	 */
 	protected function show(string $html) {
-	    // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -56,7 +56,7 @@ class TestCronRemoveDataConfirm {
 	 * @param string $cmd
 	 */
 	protected function redirectToPlugins(string $cmd) {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
@@ -64,38 +64,38 @@ class TestCronRemoveDataConfirm {
 	 *
 	 */
 	protected function cancel() {
-        // TODO: ?
+		// TODO: ?
 	}
 
 
 	/**
 	 *
 	 */
-	protected function confirmRemoveTestCronData() {
-        // TODO: ?
+	protected function confirmRemoveCleanUpSessionsData() {
+		// TODO: ?
 	}
 
 
 	/**
 	 *
 	 */
-	protected function deactivateTestCron() {
-        // TODO: ?
+	protected function deactivateCleanUpSessions() {
+		// TODO: ?
 	}
 
 
 	/**
 	 *
 	 */
-	protected function setKeepTestCronData() {
-        // TODO: ?
+	protected function setKeepCleanUpSessionsData() {
+		// TODO: ?
 	}
 
 
 	/**
 	 *
 	 */
-	protected function setRemoveTestCronData() {
-        // TODO: ?
+	protected function setRemoveCleanUpSessionsData() {
+		// TODO: ?
 	}
 }
