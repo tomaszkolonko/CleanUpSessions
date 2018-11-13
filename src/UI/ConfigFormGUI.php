@@ -1,52 +1,53 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\UI;
+namespace iLUB\Plugins\CleanUpSessions\UI;
 
-use TestCronConfigGUI;
-use ilTestCronConfigGUI;
-use ilTestCronPlugin;
+use CleanUpSessionsConfigGUI;
+use ilCleanUpSessionsConfigGUI;
+use ilCleanUpSessionsPlugin;
 use ilPropertyFormGUI;
 use ilTextInputGUI;
-use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
-use iLUB\Plugins\TestCron\Helper\DIC;
+use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
+use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 
 /**
  * Class ConfigFOrmGUI
  *
- * @package iLUB\Plugins\TestCron\UI
+ * @package iLUB\Plugins\CleanUpSessions\UI
  */
 class ConfigFormGUI extends ilPropertyFormGUI {
 
-	use DIC;
+	# use DIC;
 	/**
-	 * @var ilTestCronConfigGUI
+	 * @var ilCleanUpSessionsConfigGUI
 	 */
 	protected $parent_gui;
 	/**
-	 * @var ITestCron
+	 * @var ICleanUpSessions
 	 */
 	protected $config;
 	/**
-	 * @var ilTestCronPlugin
+	 * @var ilCleanUpSessionsPlugin
 	 */
 	protected $pl;
-    /**
-     * @var TestCronDBAccess
-     */
+	/**
+	 * @var CleanUpSessionsDBAccess
+	 */
 	protected $access;
 
 
 	/**
-	 * @param TestCronConfigGUI $parent_gui
+	 * @param CleanUpSessionsConfigGUI $parent_gui
 	 */
 	public function __construct($parent_gui) {
+		global $DIC;
 		$this->parent_gui = $parent_gui;
-		$this->access = new TestCronDBAccess();
-		$this->pl = ilTestCronPlugin::getInstance();
-		$this->setFormAction($this->ctrl()->getFormAction($this->parent_gui));
+		$this->access = new CleanUpSessionsDBAccess();
+		$this->pl = ilCleanUpSessionsPlugin::getInstance();
+		$this->setFormAction($DIC->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();
-		$this->addCommandButton(testCronConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
-		$this->addCommandButton(testCronConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
+		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
+		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));
 		parent::__construct();
 	}
 
@@ -57,7 +58,7 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	protected function initForm() {
 		$this->setTitle($this->pl->txt('admin_form_title'));
 
-		$item = new ilTextInputGUI($this->pl->txt('expiration_threshold'), ilTestCronPlugin::EXPIRATION_THRESHOLD);
+		$item = new ilTextInputGUI($this->pl->txt('expiration_threshold'), ilCleanUpSessionsPlugin::EXPIRATION_THRESHOLD);
 		$item->setInfo($this->pl->txt('expiration_info'));
 		$item->setValue($this->access->getExpirationValue());
 		$this->addItem($item);

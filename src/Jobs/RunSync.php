@@ -1,27 +1,27 @@
 <?php
 
-namespace iLUB\Plugins\TestCron\Jobs;
+namespace iLUB\Plugins\CleanUpSessions\Jobs;
 
 use Exception;
 use ilCronJob;
-use iLUB\Plugins\TestCron\Helper\TestCronDBAccess;
-use iLUB\Plugins\TestCron\Jobs\Result\AbstractResult;
-use iLUB\Plugins\TestCron\Jobs\Result\ResultFactory;
-use ilTestCronPlugin;
+use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
+use iLUB\Plugins\CleanUpSessions\Jobs\Result\AbstractResult;
+use iLUB\Plugins\CleanUpSessions\Jobs\Result\ResultFactory;
+use ilCleanUpSessionsPlugin;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
 /**
  * Class RunSync
  *
- * @package iLUB\Plugins\TestCron\Jobs
+ * @package iLUB\Plugins\CleanUpSessions\Jobs
  */
 class RunSync extends AbstractJob {
 
-    /**
-     * @var $this->logger
-     */
-    protected $logger;
+	/**
+	 * @var logger
+	 */
+	protected $logger;
 
 	/**
 	 * @return string
@@ -64,23 +64,28 @@ class RunSync extends AbstractJob {
 
 
 	/**
-	 * @return AbstractResult
-     * @throws
+	 * @return \ilCronJobResult
+	 * @throws
 	 */
 	public function run() {
-        $this->logger = new Logger("CronSyncLogger");
-        $this->logger->pushHandler(new StreamHandler(ilTestCronPlugin::LOG_DESTINATION), Logger::DEBUG);
+		$this->logger = new Logger("CronSyncLogger");
+		$this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
+		$jobResult = new \ilCronJobResult();
 
-        $this->logger->info("Rsync::run() \n");
+		$this->logger->info("Rsync::run() \n");
 		try {
 
-            $tc = new TestCronDBAccess();
-            $tc->allAnonymousSessions();
-            $tc->removeAnonymousSessionsOlderThanExpirationThreshold();
+			$tc = new CleanUpSessionsDBAccess();
+			$tc->allAnonymousSessions();
+			$tc->removeAnonymousSessionsOlderThanExpirationThreshold();
 
-			return ResultFactory::ok("everything's fine.");
+			$jobResult->setStatus($jobResult::STATUS_OK);
+			$jobResult->setMessage("Everything worked fine.");
+			return $jobResult;
 		} catch (Exception $e) {
-			return ResultFactory::error("there was an error");
+			$jobResult->setStatus($jobResult::STATUS_CRASHED);
+			$jobResult->setMessage("There was an error.");
+			return $jobResult;
 		}
 	}
 }

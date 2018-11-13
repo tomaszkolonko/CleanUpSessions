@@ -1,17 +1,17 @@
 ## Installation
 
-### Install TestCron plugin
+### Install CleanUpSessions plugin
 Start at your ILIAS root directory 
 
 ```
 mkdir -p Customizing/global/plugins/Services/Cron/CronHook
 cd Customizing/global/plugins/Services/Cron/CronHook
-git clone git@github.com:tomaszkolonko/TestCron.git
+git clone git@github.com:tomaszkolonko/CleanUpSessions.git
 ```
 
 ### Install dependencies via composer
 ```
-cd TestCron
+cd CleanUpSessions
 composer install
 ```
 
