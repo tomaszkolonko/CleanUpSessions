@@ -2,16 +2,11 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-// use iLUB\Plugins\CleanUpSessions\Helper\DIC;
-
 /**
  * Class ilCleanUpSessionsConfigGUI
  *
  */
 class ilCleanUpSessionsConfigGUI extends ilPluginConfigGUI {
-
-	# use DIC;
-
 	/**
 	 * @inheritdoc
 	 * @throws ilCtrlException
