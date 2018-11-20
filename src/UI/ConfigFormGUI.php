@@ -8,7 +8,6 @@ use ilCleanUpSessionsPlugin;
 use ilPropertyFormGUI;
 use ilTextInputGUI;
 use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
-use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 
 /**
  * Class ConfigFOrmGUI
@@ -17,7 +16,6 @@ use iLUB\Plugins\CleanUpSessions\Helper\DIC;
  */
 class ConfigFormGUI extends ilPropertyFormGUI {
 
-	# use DIC;
 	/**
 	 * @var ilCleanUpSessionsConfigGUI
 	 */
@@ -34,17 +32,25 @@ class ConfigFormGUI extends ilPropertyFormGUI {
 	 * @var CleanUpSessionsDBAccess
 	 */
 	protected $access;
+	/**
+	 * @var dic
+	 */
+	protected $DIC;
 
 
 	/**
-	 * @param CleanUpSessionsConfigGUI $parent_gui
+	 * ConfigFormGUI constructor.
+	 *
+	 * @param $parent_gui
+	 * @param $dic
+	 * @throws \Exception
 	 */
-	public function __construct($parent_gui) {
-		global $DIC;
+	public function __construct($parent_gui, $dic) {
+		$this->DIC = $dic;
 		$this->parent_gui = $parent_gui;
-		$this->access = new CleanUpSessionsDBAccess();
+		$this->access = new CleanUpSessionsDBAccess($this->DIC);
 		$this->pl = ilCleanUpSessionsPlugin::getInstance();
-		$this->setFormAction($DIC->ctrl()->getFormAction($this->parent_gui));
+		$this->setFormAction($this->DIC->ctrl()->getFormAction($this->parent_gui));
 		$this->initForm();
 		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_SAVE_CONFIG, $this->pl->txt('button_save'));
 		$this->addCommandButton(cleanUpSessionsConfigGUI::CMD_CANCEL, $this->pl->txt('button_cancel'));

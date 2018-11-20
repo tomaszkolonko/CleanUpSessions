@@ -2,7 +2,6 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-// use iLUB\Plugins\CleanUpSessions\Helper\DIC;
 use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
 use iLUB\Plugins\CleanUpSessions\Jobs\RunSync;
 
@@ -13,15 +12,13 @@ use iLUB\Plugins\CleanUpSessions\Jobs\RunSync;
  */
 class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 
-	# use DIC;
-
 	const PLUGIN_ID = 'clean_ses';
 	const PLUGIN_NAME = 'CleanUpSessions';
 	const TABLE_NAME = 'clean_ses_cron';
 	const COLUMN_NAME = 'expiration';
 	const DEFAULT_EXPIRATION_VALUE = 240;
 	const EXPIRATION_THRESHOLD = 'expiration_threshold';
-	const ILPLUGIN_TABLE = 'il_plugin';
+	# const IL_PLUGIN_TABLE = 'il_plugin';
 	const LOG_DESTINATION = './Customizing/global/plugins/Services/Cron/CronHook/CleanUpSessions/app.log';
 
 	/**
@@ -76,7 +73,8 @@ class ilCleanUpSessionsPlugin extends ilCronHookPlugin {
 	 * AfterUninstall deletes the tables from the DB
 	 */
 	protected function afterUninstall() {
-		$this->access = new CleanUpSessionsDBAccess();
+		global $DIC;
+		$this->access = new CleanUpSessionsDBAccess($DIC);
 		$this->access->removePluginTableFromDB();
 	}
 

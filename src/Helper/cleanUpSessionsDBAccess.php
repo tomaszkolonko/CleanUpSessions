@@ -16,9 +16,14 @@ class CleanUpSessionsDBAccess {
 	protected $db;
 
 	/**
-	 * @var $this ->logger
+	 * @var logger
 	 */
 	protected $logger;
+
+	/**
+	 * @var DIC
+	 */
+	protected $DIC;
 
 	/**
 	 * CleanUpSessionsDBAccess constructor. Initializes Monolog logger. Logs to root directory of the plugin.
@@ -26,12 +31,12 @@ class CleanUpSessionsDBAccess {
 	 * @param null $logger
 	 * @throws \Exception
 	 */
-	public function __construct() {
-		global $DIC;
+	public function __construct($dic) {
+		$this->DIC = $dic;
 		$this->logger = new Logger("CleanUpSessionsDBAccess");
 		$this->logger->pushHandler(new StreamHandler(ilCleanUpSessionsPlugin::LOG_DESTINATION), Logger::DEBUG);
 
-		$this->db = $DIC->database();
+		$this->db = $this->DIC->database();
 	}
 
 	/**

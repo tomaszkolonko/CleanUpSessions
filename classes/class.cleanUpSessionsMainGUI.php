@@ -24,9 +24,14 @@ class cleanUpSessionsMainGUI {
 	protected $pl;
 
 	/**
-	 * @var $this ->logger
+	 * @var logger
 	 */
 	protected $logger;
+
+	/**
+	 * @var $DIC
+	 */
+	protected $DIC;
 
 
 	/**
@@ -34,6 +39,8 @@ class cleanUpSessionsMainGUI {
 	 * @throws Exception
 	 */
 	public function __construct() {
+		global $DIC;
+		$this->DIC = $DIC;
 		$this->pl = ilCleanUpSessionsPlugin::getInstance();
 
 		$this->logger = new Logger("CleanUpSessionsMainGUI");
@@ -43,20 +50,18 @@ class cleanUpSessionsMainGUI {
 
 
 	/**
-	 * @throws \ILIAS\Filesystem\Exception\IOException
 	 * @throws ilCtrlException
 	 */
 	public function executeCommand() {
-		global $DIC;
 		$this->logger->info("executeCommand()");
 		$this->initTabs();
-		$nextClass = $DIC->ctrl()->getNextClass();
+		$nextClass = $this->DIC->ctrl()->getNextClass();
 		switch ($nextClass) {
 			case strtolower(cleanUpSessionsConfigGUI::class):
-				$DIC->ctrl()->forwardCommand(new cleanUpSessionsConfigGUI());
+				$this->DIC->ctrl()->forwardCommand(new cleanUpSessionsConfigGUI());
 				break;
 			default:
-				$cmd = $DIC->ctrl()->getCmd(self::CMD_INDEX);
+				$cmd = $this->DIC->ctrl()->getCmd(self::CMD_INDEX);
 				$this->{$cmd}();
 		}
 
@@ -67,8 +72,7 @@ class cleanUpSessionsMainGUI {
 	 * Redirect to the Config GUI of the Plugin
 	 */
 	protected function index() {
-		global $DIC;
-		$DIC->ctrl()->redirectByClass(cleanUpSessionsConfigGUI::class);
+		$this->DIC->ctrl()->redirectByClass(cleanUpSessionsConfigGUI::class);
 	}
 
 
@@ -76,9 +80,8 @@ class cleanUpSessionsMainGUI {
 	 * Add tabs to the main Config GUI
 	 */
 	protected function initTabs() {
-		global $DIC;
-		$DIC->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG), $DIC->ctrl()
-			->getLinkTargetByClass(cleanUpSessionsConfigGUI::class));
+		$this->DIC->tabs()->addTab(self::TAB_PLUGIN_CONFIG, $this->pl->txt(self::TAB_PLUGIN_CONFIG),
+			$this->DIC->ctrl()->getLinkTargetByClass(cleanUpSessionsConfigGUI::class));
 
 	}
 

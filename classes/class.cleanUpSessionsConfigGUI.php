@@ -18,12 +18,11 @@ class cleanUpSessionsConfigGUI extends cleanUpSessionsMainGUI {
 	 */
 	protected $access;
 
-
 	/**
 	 * Creates a new ConfigFormGUI and sets the Content
 	 */
 	protected function index() {
-		$form = new ConfigFormGUI($this);
+		$form = new ConfigFormGUI($this, $this->DIC);
 		global $tpl;
 		$tpl->setContent($form->getHTML());
 	}
@@ -35,14 +34,13 @@ class cleanUpSessionsConfigGUI extends cleanUpSessionsMainGUI {
 	 * @throws Exception
 	 */
 	protected function saveConfig() {
-		global $DIC;
-		$form = new ConfigFormGUI($this);
+		$form = new ConfigFormGUI($this, $this->DIC);
 		if ($form->checkInput()) {
 			$this->checkAndUpdate($form->getInput(ilCleanUpSessionsPlugin::EXPIRATION_THRESHOLD));
 		} else {
 			ilUtil::sendFailure($this->pl->txt('msg_failed_save'), true);
 		}
-		$DIC->ctrl()->redirect($this);
+		$this->DIC->ctrl()->redirect($this);
 	}
 
 	/**
@@ -53,7 +51,7 @@ class cleanUpSessionsConfigGUI extends cleanUpSessionsMainGUI {
 	 * @throws Exception
 	 */
 	protected function checkAndUpdate($expiration_value) {
-		$this->access = new CleanUpSessionsDBAccess();
+		$this->access = new CleanUpSessionsDBAccess($this->DIC);
 		if (is_numeric($expiration_value) && (int)$expiration_value > 0) {
 			$this->access->updateExpirationValue($expiration_value);
 			ilUtil::sendSuccess($this->pl->txt('msg_successfully_saved'), true);
@@ -66,7 +64,6 @@ class cleanUpSessionsConfigGUI extends cleanUpSessionsMainGUI {
 	 *
 	 */
 	protected function initTabs() {
-		global $DIC;
-		$DIC->tabs()->activateTab(self::TAB_PLUGIN_CONFIG);
+		$this->DIC->tabs()->activateTab(self::TAB_PLUGIN_CONFIG);
 	}
 }

@@ -5,8 +5,6 @@ namespace iLUB\Plugins\CleanUpSessions\Jobs;
 use Exception;
 use ilCronJob;
 use iLUB\Plugins\CleanUpSessions\Helper\CleanUpSessionsDBAccess;
-use iLUB\Plugins\CleanUpSessions\Jobs\Result\AbstractResult;
-use iLUB\Plugins\CleanUpSessions\Jobs\Result\ResultFactory;
 use ilCleanUpSessionsPlugin;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
