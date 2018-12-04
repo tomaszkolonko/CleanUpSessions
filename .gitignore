@@ -4,3 +4,4 @@ vendor/*
 
 # Log File created by Monolog
 app.log
+tests/cleanUpSessionsDBAccessTest.php
