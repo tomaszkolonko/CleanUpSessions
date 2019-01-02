@@ -15,7 +15,7 @@ use Monolog\Handler\StreamHandler;
  */
 class cleanUpSessionsMainGUI {
 	const TAB_PLUGIN_CONFIG = 'tab_plugin_config';
-	const TAB_ORIGINS = 'tab_origins';
+	// const TAB_ORIGINS = 'tab_origins';
 	const CMD_INDEX = 'index';
 
 	/**
