@@ -2,7 +2,6 @@
 
 namespace iLUB\Plugins\CleanUpSessions\Helper;
 
-
 use ilDB;
 use ilCleanUpSessionsPlugin;
 use Monolog\Logger;
@@ -64,7 +63,7 @@ class CleanUpSessionsDBAccess {
 	}
 
 	/**
-	 * Logs all exppired anonymous sessions to the log ilCleanUpSessionsPlugin::LOG_DESTINATION and returns the number of
+	 * Logs all expired anonymous sessions to the log ilCleanUpSessionsPlugin::LOG_DESTINATION and returns the number of
 	 * all expired anonymous sessions
 	 *
 	 * @return int

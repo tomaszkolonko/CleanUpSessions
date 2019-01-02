@@ -9,7 +9,10 @@
 use PHPUnit\Framework\TestCase;
 
 class ExpirationValueTest extends TestCase {
-	public function testYolo() {
-		$this->assertEquals(2, 2);
+	public function setUp() {
+		// TODO: create a db
+		// TODO: create connection to db
+		// TODO: construct the plugin with it's constructor passing in the new db
+
 	}
 }
