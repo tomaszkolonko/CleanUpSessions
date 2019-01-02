@@ -1,0 +1,7 @@
+vendor/*
+#!vendor/autoload.php
+#!vendor/composer/*
+
+# Log File created by Monolog
+app.log
+tests/cleanUpSessionsDBAccessTest.php
